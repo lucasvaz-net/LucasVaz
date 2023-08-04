@@ -13,32 +13,36 @@
 
         <h1 class="display-4">Contato</h1>
         <div class="row align-items-center">
-            <div class="col-md-12">
-                <div class="contact-icons text-center">
+            <div>
+                <div class="text-center">
                     @foreach (var contato in Model)
                     {
-                        if (contato.TipoContato.DsTipoContato == "Telefone")
+                        if (contato?.TipoContato?.DsTipoContato != null &&
+                        contato.TipoContato.DsTipoContato.Equals("Telefone", StringComparison.OrdinalIgnoreCase))
                         {
                             <a href="@contato.DsContato" class="icon-link m-lg-3">
                                 <img src="~/chamada-telefonica.png" alt="Telefone" class="img-fluid" style="max-width: 40px;">
                             </a>
                         }
 
-                        if (contato.TipoContato.DsTipoContato == "Email")
+                        if (contato?.TipoContato?.DsTipoContato != null &&
+                        contato.TipoContato.DsTipoContato.Equals("Email", StringComparison.OrdinalIgnoreCase))
                         {
                             <a href="mailto:@contato.DsContato" class="icon-link m-lg-3">
                                 <img src="~/o-email.png" alt="E-mail" class="img-fluid" style="max-width: 40px;">
                             </a>
                         }
 
-                        if (contato.TipoContato.DsTipoContato == "WhatsApp")
+                        if (contato?.TipoContato?.DsTipoContato != null &&
+                        contato.TipoContato.DsTipoContato.Equals("WhatsApp", StringComparison.OrdinalIgnoreCase))
                         {
                             <a href="@contato.DsContato" class="icon-link m-lg-3">
                                 <img src="~/whatsapp.png" alt="WhatsApp" class="img-fluid" style="max-width: 40px;">
                             </a>
                         }
 
-                        if (contato.TipoContato.DsTipoContato == "LinkedIn")
+                        if (contato?.TipoContato?.DsTipoContato != null &&
+                        contato.TipoContato.DsTipoContato.Equals("LinkedIn", StringComparison.OrdinalIgnoreCase))
                         {
                             <a href="@contato.DsContato" class="icon-link m-lg-3">
                                 <img src="~/linkedin.png" alt="LinkedIn" class="img-fluid" style="max-width: 40px;">
