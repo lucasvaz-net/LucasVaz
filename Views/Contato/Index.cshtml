@@ -1,0 +1,75 @@
+﻿@model List<Contato>
+
+@{
+    ViewData["Title"] = "Contato";
+}
+
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div id="estrelas">
+
+        <h1 class="display-4">Contato</h1>
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="contact-icons text-center">
+                    @foreach (var contato in Model)
+                    {
+                        if (contato.TipoContato.DsTipoContato == "Telefone")
+                        {
+                            <a href="@contato.DsContato" class="icon-link m-lg-3">
+                                <img src="~/chamada-telefonica.png" alt="Telefone" class="img-fluid" style="max-width: 40px;">
+                            </a>
+                        }
+
+                        if (contato.TipoContato.DsTipoContato == "Email")
+                        {
+                            <a href="mailto:@contato.DsContato" class="icon-link m-lg-3">
+                                <img src="~/o-email.png" alt="E-mail" class="img-fluid" style="max-width: 40px;">
+                            </a>
+                        }
+
+                        if (contato.TipoContato.DsTipoContato == "WhatsApp")
+                        {
+                            <a href="@contato.DsContato" class="icon-link m-lg-3">
+                                <img src="~/whatsapp.png" alt="WhatsApp" class="img-fluid" style="max-width: 40px;">
+                            </a>
+                        }
+
+                        if (contato.TipoContato.DsTipoContato == "LinkedIn")
+                        {
+                            <a href="@contato.DsContato" class="icon-link m-lg-3">
+                                <img src="~/linkedin.png" alt="LinkedIn" class="img-fluid" style="max-width: 40px;">
+                            </a>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="container mt-3">
+            <form target="_blank" action="https://formsubmit.co/contato@lucasvaz.dev.br" method="POST" class="bg-transparent">
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="text" name="name" class="form-control form-control-lg bg-transparent text-white" placeholder="Nome" required>
+                        </div>
+                        <div class="col">
+                            <input type="email" name="email" class="form-control form-control-lg bg-transparent text-white" placeholder="Email" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Mensagem" class="form-control form-control-lg bg-transparent text-white" name="message" rows="10" required></textarea>
+                </div>
+                <button type="submit" class="transparent-button">Enviar</button>
+            </form>
+        </div>
+        @for (int i = 0; i < 300; i++)
+        {
+            <div class="estrela" style="top: @(new Random().Next(0, 100))vh; left: @(new Random().Next(0, 100))vw; animation-delay: @(new Random().Next(1, 10))s;"></div>
+        }
+    </div>
+</body>
+</html>
