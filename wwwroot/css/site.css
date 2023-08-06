@@ -71,8 +71,7 @@ p {
 }
 #sidebar {
     position: sticky;
-    margin-top: 200px;
-    top: 200px;
+    top: 150px;
     left: 0;
     height: 50%;
     width: 80px;
@@ -80,10 +79,8 @@ p {
     background-color: black;
 }
 
-
     #sidebar:hover {
         width: 200px;
-
     }
 
     #sidebar .navbar-brand {

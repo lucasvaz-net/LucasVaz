@@ -57,19 +57,21 @@
                     </li>
                 </ul>
             </div>
-    </nav>
+        </nav>
 
         <div class="container  flex-grow-1">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+            <main role="main" class="pb-3" style="margin-bottom: 50px;">
 
-    <footer class="footer text-muted text-center">
-            <div class="container">
-            &copy; 2023 - Desenvolvido por Lucas Vaz - <a asp-area="" asp-controller="Home" asp-action="Privacy">Politica de Privacidade</a>
+                @RenderBody()
+            </main>
         </div>
-    </footer>
+
+        <footer class="footer text-muted text-center" style="display: inline-block;">
+
+            <div class="container">
+                &copy; 2023 - Desenvolvido por Lucas Vaz - <a asp-area="" asp-controller="Home" asp-action="Privacy">Politica de Privacidade</a>
+            </div>
+        </footer>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
