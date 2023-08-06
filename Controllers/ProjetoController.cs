@@ -1,12 +1,36 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LucasVaz.Data;
+using LucasVaz.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace LucasVaz.Controllers
 {
     public class ProjetoController : Controller
     {
-        public IActionResult Index()
+        private readonly ProjetoDal _projetoDal;
+
+        public ProjetoController(ProjetoDal projetoDal)
         {
-            return View();
+            _projetoDal = projetoDal;
+        }
+
+        [HttpPost]
+        public IActionResult FiltrarPorTecnologia(List<int> idsTecnologia, int? page, int? pageSize)
+        {
+            int pageNumber = page ?? 1;
+            int size = pageSize ?? 10;
+            var projetos = _projetoDal.GetProjetosPorTecnologia(idsTecnologia, pageNumber, size);
+            ViewBag.Tecnologias = _projetoDal.ObterTodasAsTecnologias();
+            return View("Index", projetos);
+        }
+
+        public IActionResult Index(int? page, int? pageSize)
+        {
+            int pageNumber = page ?? 1;
+            int size = pageSize ?? 12;
+            var projetos = _projetoDal.GetProjetos(pageNumber, size);
+            ViewBag.Tecnologias = _projetoDal.ObterTodasAsTecnologias();
+            return View(projetos);
         }
     }
 }
