@@ -1,8 +1,20 @@
-﻿@{
+﻿@model LucasVaz.Models.Pessoa
+
+@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<head>
+    <meta charset="UTF-8">
+</head>
+<html>
+<body>
+<h1 style="max-width: 480px; margin: auto; margin-top:200px;">@Model.DsInicio</h1>
+<div id="button-container" style="display: flex; justify-content: center; align-items: center;">
+    <a asp-controller="SobreMim" asp-action="Index" class="transparent-button">Vamos Lá</a>
 </div>
+@for (int i = 0; i < 300; i++)
+{
+    <div class="estrela" style="top: @(new Random().Next(0, 100))vh; left: @(new Random().Next(0, 100))vw; animation-delay: @(new Random().Next(1, 100))s;"></div>
+}
+</body>
+</html>

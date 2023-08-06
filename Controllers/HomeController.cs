@@ -1,4 +1,5 @@
-﻿using LucasVaz.Models;
+﻿using LucasVaz.Data;
+using LucasVaz.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,16 +7,17 @@ namespace LucasVaz.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly PessoaDal _pessoaDal;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(PessoaDal pessoaDal)
         {
-            _logger = logger;
+            _pessoaDal = pessoaDal;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var pessoa = _pessoaDal.GetPessoa(1);
+            return View(pessoa);
         }
 
         public IActionResult Privacy()

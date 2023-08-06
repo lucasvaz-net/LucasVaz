@@ -1,18 +1,117 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    html {
+        font-size: 16px;
+        color: white
+    }
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: black;
+    color: white;
+}
+
+
+h1 {
+    text-align: center;
+    font-family: 'Sanchez', serif;
+}
+p {
+    font-size: 20px;
+    text-align: left;
+    margin: 20px;
+    font-family: 'Sono';
+}
+
+.transparent-button {
+    background-color: transparent;
+    opacity: inherit;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+@keyframes twinkling {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.estrela {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkling 1.3s infinite ease-in-out;
+}
+
+#button-container {
+    opacity: 0;
+    text-decoration: none;
+    margin-top: 20px;
+}
+#sidebar {
+    position: sticky;
+    margin-top: 200px;
+    top: 200px;
+    left: 0;
+    height: 50%;
+    width: 80px;
+    transition: width 0.3s;
+    background-color: black;
+}
+
+
+    #sidebar:hover {
+        width: 200px;
+
+    }
+
+    #sidebar .navbar-brand {
+        display: none;
+    }
+
+    #sidebar:hover .navbar-brand {
+        display: inline;
+    }
+
+.icon {
+    width: 30px;
+    height: 30px;
+}
+
+.nav-text {
+    display: none;
+    margin-left: 10px;
+    color: white;
+}
+
+#sidebar:hover .nav-text {
+    display: inline;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }

@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<DataConnection>();
 builder.Services.AddScoped<ContatoDal>();
+builder.Services.AddScoped<PessoaDal>();
 
 
 

@@ -1,6 +1,38 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Politica de Privacidade";
 }
-<h1>@ViewData["Title"]</h1>
+<html>
+<body>
+    <div id="estrelas">
 
-<p>Use this page to detail your site's privacy policy.</p>
+    <h1 class="display-4">Política de Privacidade</h1>
+    <p>Última atualização: 04 de Agosto de 2023</p>
+    <p>A presente Política de Privacidade tem como objetivo informar você, usuário, sobre como são coletados, usados, compartilhados e protegidos os dados pessoais que você fornece ao acessar e utilizar o site Portfolio de Lucas Vaz (https://lucasvaz.dev.br).</p>
+    <p>Ao acessar e usar este site, você concorda com os termos desta Política de Privacidade.</p>
+
+    <h2>Coleta de Informações:</h2>
+    <p>Nosso site pode coletar informações pessoais que você fornece voluntariamente, como seu nome e endereço de e-mail, quando você entra em contato conosco ou envia um pedido de orçamento. Também podemos coletar informações não pessoais, como o tipo de navegador, o dispositivo utilizado para acessar nosso site, o tempo e a data de acesso e o endereço IP.</p>
+
+    <h2>Uso das Informações:</h2>
+    <p>Usamos suas informações pessoais para responder suas perguntas, enviar orçamentos, processar transações e melhorar nossos serviços. As informações não pessoais são usadas para entender melhor como os visitantes usam nosso site e melhorar a experiência do usuário.</p>
+
+    <h2>Compartilhamento de Informações:</h2>
+    <p>Não compartilhamos suas informações pessoais com terceiros, a menos que você nos dê permissão para fazê-lo ou quando exigido por lei. As informações não pessoais podem ser compartilhadas com terceiros para fins de análise e melhoria do site.</p>
+
+    <h2>Segurança:</h2>
+    <p>Tomamos medidas para proteger suas informações pessoais contra acesso, uso ou divulgação não autorizados. No entanto, nenhum método de transmissão pela Internet é 100% seguro, por isso não podemos garantir sua segurança absoluta.</p>
+
+    <h2>Alterações na Política de Privacidade:</h2>
+    <p>Podemos alterar esta Política de Privacidade de tempos em tempos. Quando fizermos alterações, atualizaremos a data de "última atualização" no início deste documento. Recomendamos que você revise regularmente nossa Política de Privacidade para se manter informado sobre como protegemos suas informações.</p>
+
+    <h2>Contato:</h2>
+    <p>Se você tiver alguma dúvida sobre esta Política de Privacidade, entre em contato conosco em: contato@lucasvaz.dev.br</p>
+    <p>Sua privacidade é importante para nós. Agradecemos a sua confiança em Lucas Vaz e estamos comprometidos em proteger sua informação.</p>
+    <p>Ao usar este site, você aceita esta política de privacidade.</p>
+        @for (int i = 0; i < 150; i++)
+        {
+            <div class="estrela" style="top: @(new Random().Next(0, 100))vh; left: @(new Random().Next(0, 100))vw; animation-delay: @(new Random().Next(1, 10))s;"></div>
+        }
+</div>
+</body>
+</html>
