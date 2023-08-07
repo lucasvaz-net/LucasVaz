@@ -1,22 +1,29 @@
 ﻿@model LucasVaz.Models.Pessoa
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
+<html>
 <head>
     <meta charset="UTF-8">
 </head>
-<html>
 <body>
-    <div style="position: sticky; top: 50%; left: 70%; width: 450px; height: 400px;">
-        <h1>@Model.DsInicio</h1>
+    <div id="estrelas">
+        <div id="content-container">
+            <h1>@Model.DsInicio</h1>
+            <div id="button-container" style="opacity:0">
+                <a asp-controller="SobreMim" asp-action="Index" class="transparent-button">Vamos Lá</a>
+            </div>
+        </div>
+        @for (int i = 0; i < 300; i++)
+        {
+            <div class="estrela" style="top: @(new Random().Next(0, 100))vh; left: @(new Random().Next(0, 100))vw; animation-delay: @(new Random().Next(1, 100))s;"></div>
+        }
     </div>
-<div id="button-container" style="display: flex; margin-top:50px; justify-content: center; align-items: center;">
-    <a asp-controller="SobreMim" asp-action="Index" class="transparent-button">Vamos Lá</a>
-</div>
-@for (int i = 0; i < 300; i++)
-{
-    <div class="estrela" style="top: @(new Random().Next(0, 100))vh; left: @(new Random().Next(0, 100))vw; animation-delay: @(new Random().Next(1, 100))s;"></div>
-}
+    <script>
+        setTimeout(function () {
+            document.getElementById("button-container").style.opacity = "1";
+        }, 13000);
+    </script>
 </body>
 </html>

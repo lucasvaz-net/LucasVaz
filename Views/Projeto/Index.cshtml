@@ -15,19 +15,14 @@
 <body>
     <div id="estrelas">
         <h1 class="display-4">Projetos</h1>
-        <div class="text-center">
-            <img src="https://github-readme-stats.vercel.app/api/top-langs?username=lucasvaz-net&locale=pt-br&hide_title=false&layout=compact&card_width=320&langs_count=12&theme=radical&hide_border=false" height="150" alt="languages graph" style="margin: 0; padding: 0;" />
-            <img src="https://github-readme-stats.vercel.app/api?username=lucasvaz-net&hide_title=false&hide_rank=true&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=radical&locale=pt-br&hide_border=false" height="150" alt="stats graph" style="margin: 0; padding: 0;" />
-            <img src="https://streak-stats.demolab.com?user=lucasvaz-net&locale=pt-br&mode=weekly&theme=radical&hide_border=false&border_radius=5" height="150" alt="streak graph" style="margin: 0; padding: 0;" />
 
-        </div>
         <div class="d-flex flex-wrap mt-4" style="display: flex; justify-content: center; align-items: center;">
             <form method="post" action="/Projeto/FiltrarPorTecnologia">
                 @foreach (var tecnologia in ViewBag.Tecnologias)
                 {
                     <label>
                         <input type="checkbox" name="idsTecnologia" value="@tecnologia.IdTecnologia" />
-                        <img src="@Url.Content($"~/{ @tecnologia.DsTecnologia}.svg")" width="30" height="30" />
+                        <img src="@Url.Content($"~/img/{ @tecnologia.DsTecnologia}.svg")" width="30" height="30" />
                     </label>
                 }
                 <button type="submit" class="transparent-button">Filtrar</button>
@@ -48,7 +43,7 @@
                             <p class="text-center">
                                 @foreach (var tecnologiaProjeto in projeto.TecnologiasProjetos)
                                 {
-                                    <img src="@Url.Content($"~/{tecnologiaProjeto.Tecnologia.DsTecnologia}.svg")" width="30" height="30" />
+                                    <img src="@Url.Content($"~/img/{tecnologiaProjeto.Tecnologia.DsTecnologia}.svg")" width="30" height="30" />
                                 }
                             </p>
 
@@ -56,7 +51,7 @@
                                 @if (!string.IsNullOrEmpty(projeto.LkGithub))
                                 {
                                     <a href="@projeto.LkGithub" target="_blank" class="transparent-button" type="button">
-                                        <img src="~/github.png" width="30px" height="30px"> Ver no Github
+                                        <img src="~/img/github.png" width="30px" height="30px"> Ver no Github
                                     </a>
                                 }
                                 else
@@ -67,7 +62,7 @@
                                 @if (!string.IsNullOrEmpty(projeto.LkWeb))
                                 {
                                     <a href='@($"{projeto.LkWeb}/conta/login/{projeto.DsLoginTeste}/{projeto.DsSenhaTeste}")' target='_blank' class='transparent-button' type='button'>
-                                        <img src="~/link-conectado.png" width='34px' height='30px'> Ver na Web
+                                        <img src="~/img/link-conectado.png" width='34px' height='30px'> Ver na Web
                                     </a>
                                 }
                             </div>
@@ -88,7 +83,7 @@
 
         <div class="container mt-4">
             <div id="button-containersobremim" class="text-center">
-                <a asp-controller="Habilidades" asp-action="Index" class="transparent-button">Vamos Continuar</a>
+                <a asp-controller="Habilidade" asp-action="Index" class="transparent-button">Veja minhas Skill's</a>
             </div>
         </div>
         @for (int i = 0; i < 150; i++)

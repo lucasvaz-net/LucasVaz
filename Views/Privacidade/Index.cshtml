@@ -6,6 +6,53 @@
 }
 <html>
 <body>
+    <div class="d-flex">
+    <nav id="sidebar" class="navbar navbar-dark box-shadow mb-3">
+        <div class="container-fluid flex-column">
+            <ul class="navbar-nav flex-grow-1 flex-column">
+                <li class="nav-item">
+                    <a class="nav-link text-dark d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="~/img/home.png" class="icon"> <span class="nav-text">Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark d-flex align-items-center" asp-area="" asp-controller="SobreMim" asp-action="Index">
+                        <img src="~/img/sobre.png" class="icon"> <span class="nav-text">Sobre Mim</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark d-flex align-items-center" asp-area="" asp-controller="Experiencia" asp-action="Index">
+                        <img src="~/img/experiencia.png" class="icon"> <span class="nav-text">Experiencia</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark d-flex align-items-center" asp-area="" asp-controller="Projeto" asp-action="Index">
+                        <img src="~/img/projetos.png" class="icon"> <span class="nav-text">Projetos</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark d-flex align-items-center" asp-area="" asp-controller="Habilidade" asp-action="Index">
+                        <img src="~/img/habilidade.png" class="icon"> <span class="nav-text">Skills</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark d-flex align-items-center" asp-area="" asp-controller="Estudo" asp-action="Index">
+                        <img src="~/img/estudos.png" class="icon"> <span class="nav-text">Estudos</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark d-flex align-items-center" asp-area="" asp-controller="Contato" asp-action="Index">
+                        <img src="~/img/contato.png" class="icon"> <span class="nav-text">Contato</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark d-flex align-items-center" asp-area="" asp-controller="Privacidade" asp-action="Index">
+                        <img src="~/img/lock.png" class="icon"> <span class="nav-text">Privacidade</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div id="estrelas">
         <h1 class="display-4">Política de Privacidade</h1>
         <p>Última atualização: @(Model.Any() ? Model.Last().DtPrivacidade.ToString("dd/MM/yyyy") : "Não disponível")</p>
@@ -19,5 +66,6 @@
             <div class="estrela" style="top: @(new Random().Next(0, 100))vh; left: @(new Random().Next(0, 100))vw; animation-delay: @(new Random().Next(1, 10))s;"></div>
         }
     </div>
+</div>
 </body>
 </html>

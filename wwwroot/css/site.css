@@ -65,7 +65,6 @@ p {
 }
 
 #button-container {
-    opacity: 0;
     text-decoration: none;
     margin-top: 20px;
 }
@@ -118,4 +117,13 @@ p {
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     color:white;
+}
+
+#content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 65vh;
+    height: 100vh; /* Isto faz com que o container ocupe toda a altura da viewport */
 }

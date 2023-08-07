@@ -12,53 +12,6 @@
 </head>
 <body>
     <div class="d-flex">
-        <nav id="sidebar" class="navbar navbar-dark box-shadow mb-3">
-            <div class="container-fluid flex-column">
-                <ul class="navbar-nav flex-grow-1 flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
-                            <img src="~/home.png" class="icon"> <span class="nav-text">Inicio</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark d-flex align-items-center" asp-area="" asp-controller="SobreMim" asp-action="Index">
-                            <img src="~/sobre.png" class="icon"> <span class="nav-text">Sobre Mim</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark d-flex align-items-center" asp-area="" asp-controller="Experiencia" asp-action="Index">
-                            <img src="~/experiencia.png" class="icon"> <span class="nav-text">Experiencia</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark d-flex align-items-center" asp-area="" asp-controller="Projeto" asp-action="Index">
-                            <img src="~/projetos.png" class="icon"> <span class="nav-text">Projetos</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark d-flex align-items-center" asp-area="" asp-controller="Habilidade" asp-action="Index">
-                            <img src="~/habilidade.png" class="icon"> <span class="nav-text">Skills</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark d-flex align-items-center" asp-area="" asp-controller="Estudo" asp-action="Index">
-                            <img src="~/estudos.png" class="icon"> <span class="nav-text">Estudos</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark d-flex align-items-center" asp-area="" asp-controller="Contato" asp-action="Index">
-                            <img src="~/contato.png" class="icon"> <span class="nav-text">Contato</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark d-flex align-items-center" asp-area="" asp-controller="Privacidade" asp-action="Index">
-                            <img src="~/lock.png" class="icon"> <span class="nav-text">Privacidade</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
         <div class="container  flex-grow-1">
             <main role="main" class="pb-3" style="margin-bottom: 50px;">
 
@@ -69,7 +22,7 @@
         <footer class="footer text-muted text-center" style="display: inline-block;">
 
             <div class="container">
-                &copy; 2023 - Desenvolvido por Lucas Vaz - <a asp-area="" asp-controller="Home" asp-action="Privacy">Politica de Privacidade</a>
+                &copy; 2023 - Desenvolvido por Lucas Vaz - <a asp-area="" asp-controller="Privacidade" asp-action="Index">Politica de Privacidade</a>
             </div>
         </footer>
     </div>
