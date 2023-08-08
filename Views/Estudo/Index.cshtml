@@ -1,5 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Estudo";
+﻿@model IEnumerable<LucasVaz.Models.Estudo>
+
+@{
+    ViewData["Title"] = "Estudos";
 }
 <head>
     <meta charset="UTF-8">
@@ -9,6 +11,29 @@
     <div id="estrelas">
         <h1 class="display-4">Estudo</h1>
 
+        <div class="row">
+            @foreach (var estudo in Model)
+            {
+                <div class="col-md-6 col-lg-4 mt-4 d-flex">
+                    <div class="card flex-column text-center">
+                        <br />
+                        <h3>@estudo.DsEstudo</h3>
+                        <p>@estudo.DsLocal</p>
+                        <p>@estudo.DtEstudo</p>
+                        <p>@estudo.TipoEstudo.DsTipoEstudo</p>
+                        <div style="flex-grow: 1;">
+                            <p>@estudo.Pessoa.DsPessoa</p>
+                        </div>
+                        <p class="text-center">
+                            @foreach (var estudoTecnologia in estudo.EstudosTecnologias)
+                            {
+                                <img src="@Url.Content($"~/img/{estudoTecnologia.Tecnologia.DsTecnologia}.svg")" width="30" height="30" />
+                            }
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
         <div id="button-container" style="display: flex; margin-top:50px; justify-content: center; align-items: center;">
             <a asp-controller="Contato" asp-action="Index" class="transparent-button">Entre em contato</a>
         </div>

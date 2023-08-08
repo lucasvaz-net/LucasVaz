@@ -1,6 +1,11 @@
-﻿@{
+﻿@using LucasVaz.Models
+@model List<Tecnologia>
+
+
+@{
     ViewData["Title"] = "Habilidades";
 }
+
 <head>
     <meta charset="UTF-8">
 </head>
@@ -12,12 +17,43 @@
             <img src="https://github-readme-stats.vercel.app/api/top-langs?username=lucasvaz-net&locale=pt-br&hide_title=false&layout=compact&card_width=320&langs_count=12&theme=radical&hide_border=false" height="150" alt="languages graph" style="margin: 0; padding: 0;" />
             <img src="https://github-readme-stats.vercel.app/api?username=lucasvaz-net&hide_title=false&hide_rank=true&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=radical&locale=pt-br&hide_border=false" height="150" alt="stats graph" style="margin: 0; padding: 0;" />
             <img src="https://streak-stats.demolab.com?user=lucasvaz-net&locale=pt-br&mode=weekly&theme=radical&hide_border=false&border_radius=5" height="150" alt="streak graph" style="margin: 0; padding: 0;" />
-
         </div>
+
+        <div style="height: 500px; width: 100%;">
+            <canvas id="skillsChart"></canvas>
+        </div>
+
         <div id="button-container" style="display: flex; margin-top:50px; justify-content: center; align-items: center;">
             <a asp-controller="Estudo" asp-action="Index" class="transparent-button">Conheça minha formação</a>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('skillsChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.Select(t => t.DsTecnologia).ToList())),
+                    datasets: [{
+                        label: 'Nível de habilidade',
+                        data: @Html.Raw(Json.Serialize(Model.Select(t => t.QtHabilidade).ToList())),
+                        backgroundColor: [
+                            'rgba(255, 255, 255, 0.5)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 255, 255, 0.5)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        });
+    </script>
 </body>
 </html>

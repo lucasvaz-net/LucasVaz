@@ -11,7 +11,7 @@ builder.Services.AddScoped<PrivacidadeDal>();
 builder.Services.AddScoped<ProjetoDal>();
 builder.Services.AddScoped<EstudoDal>();
 builder.Services.AddScoped<ExperienciaDal>();
-   
+builder.Services.AddScoped<HabilidadeDal>();
 
 
 var app = builder.Build();
