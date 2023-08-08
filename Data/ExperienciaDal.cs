@@ -37,7 +37,6 @@ namespace LucasVaz.Data
                                     DsFuncao = reader.GetString(reader.GetOrdinal("DSFUNCAO")),
                                     DsLocal = reader.GetString(reader.GetOrdinal("DSLOCAL")),
                                     DtIni = reader.GetDateTime(reader.GetOrdinal("DTINI")),
-                                    DtFim = reader.GetDateTime(reader.GetOrdinal("DTFIM")),
                                     Pessoa = new Pessoa
                                     {
                                         IdPessoa = reader.GetInt32(reader.GetOrdinal("IDPESSOA")),
@@ -52,6 +51,11 @@ namespace LucasVaz.Data
                                     },
                                     ExperienciasTecnologias = new List<ExperienciaTecnologia>()
                                 };
+
+                                if (!reader.IsDBNull(reader.GetOrdinal("DTFIM")))
+                                {
+                                    experiencia.DtFim = reader.GetDateTime(reader.GetOrdinal("DTFIM"));
+                                }
 
                                 experiencias[idExperiencia] = experiencia;
                             }
@@ -78,6 +82,7 @@ namespace LucasVaz.Data
 
             return experiencias.Values.ToList();
         }
+
 
     }
 }

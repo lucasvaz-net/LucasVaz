@@ -1,4 +1,6 @@
-﻿@{
+﻿@using LucasVaz.Models
+@model List<Experiencia>
+@{
     ViewData["Title"] = "Experiencia";
 }
 <head>
@@ -8,6 +10,35 @@
 <body>
     <div id="estrelas">
         <h1 class="display-4">Experiencia</h1>
+
+        <div class="row">
+            @foreach (var experiencia in Model)
+            {
+                <div class="col-md-6 col-lg-4 mt-4 d-flex">
+                    <div class="card flex-column text-center">
+                        <br />
+                        <h3>@experiencia.DsExperiencia</h3>
+                        <p>@experiencia.DsFuncao</p>
+                        <p>@experiencia.DsLocal</p>
+                        <div style="flex-grow: 1;">
+                            <p>@experiencia.Pessoa.DsPessoa</p>
+                        </div>
+                        <p class="text-center">
+                            @foreach (var experienciaTecnologia in experiencia.ExperienciasTecnologias)
+                            {
+                                <img src="@Url.Content($"~/img/{experienciaTecnologia.Tecnologia.DsTecnologia}.svg")" width="30" height="30" />
+                            }
+                        </p>
+                        <div class="button-container d-flex justify-content-center">
+                            <p>@($"{experiencia.DtIni.ToString("dd/MM/yyyy")} - {experiencia.DtFim.ToString("dd/MM/yyyy")}")</p>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            }
+        </div>
+
+
 
         <div id="button-container" style="display: flex; margin-top:50px; justify-content: center; align-items: center;">
             <a asp-controller="Projeto" asp-action="Index" class="transparent-button">Veja meus Projetos</a>
