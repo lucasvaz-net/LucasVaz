@@ -1,4 +1,5 @@
-﻿@model IEnumerable<LucasVaz.Models.Estudo>
+﻿@using LucasVaz.Models
+@model IEnumerable<LucasVaz.Models.Estudo>
 
 @{
     ViewData["Title"] = "Estudos";
@@ -9,21 +10,15 @@
 <html>
 <body>
     <div id="estrelas">
-        <h1 class="display-4">Estudo</h1>
-
+        <h1 class="display-4">Estudos</h1>
         <div class="row">
             @foreach (var estudo in Model)
             {
                 <div class="col-md-6 col-lg-4 mt-4 d-flex">
-                    <div class="card flex-column text-center">
+                    <div class="card flex-fill text-center">
                         <br />
                         <h3>@estudo.DsEstudo</h3>
-                        <p>@estudo.DsLocal</p>
-                        <p>@estudo.DtEstudo</p>
-                        <p>@estudo.TipoEstudo.DsTipoEstudo</p>
-                        <div style="flex-grow: 1;">
-                            <p>@estudo.Pessoa.DsPessoa</p>
-                        </div>
+                        <p class="text-center">@estudo.TipoEstudo.DsTipoEstudo | @estudo.DsLocal | @DateTime.Parse(estudo.DtEstudo).ToString("yyyy")</p>
                         <p class="text-center">
                             @foreach (var estudoTecnologia in estudo.EstudosTecnologias)
                             {

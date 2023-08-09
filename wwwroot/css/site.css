@@ -62,6 +62,7 @@ p {
     background: white;
     border-radius: 50%;
     animation: twinkling 1.3s infinite ease-in-out;
+
 }
 
 #button-container {
@@ -125,5 +126,77 @@ p {
     justify-content: center;
     align-items: center;
     width: 65vh;
-    height: 100vh; /* Isto faz com que o container ocupe toda a altura da viewport */
+    height: 90vh; /* Isto faz com que o container ocupe toda a altura da viewport */
 }
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    background-color: rgba(128, 128, 128, 0.1);
+    overflow-x: hidden;
+    transition: all .3s;
+}
+
+.menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+    .menu li a {
+        display: block;
+        height: 50px;
+        background-size: 30px 30px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        position: sticky;
+    }
+        .menu li a:hover::after,
+        .menu li a:active::after {
+            content: attr(title); /* Pega o conteúdo do atributo title do link */
+            position: absolute;
+            left: 0;
+            top: -20px; /* Ajuste conforme necessário */
+            width: 100%;
+            text-align: center;
+            color: #000; /* Ajuste a cor conforme necessário */
+            background-color: rgba(128, 128, 128, 0.1); /* Ajuste a cor de fundo conforme necessário */
+        }
+
+        .menu li a.home {
+            background-image: url('/img/home.png');
+        }
+
+        .menu li a.sobre {
+            background-image: url('/img/sobre.png');
+        }
+
+        .menu li a.experiencia {
+            background-image: url('/img/experiencia.png');
+        }
+
+        .menu li a.projetos {
+            background-image: url('/img/projetos.png');
+        }
+
+        .menu li a.habilidade {
+            background-image: url('/img/habilidade.png');
+        }
+
+        .menu li a.estudos {
+            background-image: url('/img/estudos.png');
+        }
+
+        .menu li a.contato {
+            background-image: url('/img/contato.png');
+        }
+
+        .menu li a.privacidade {
+            background-image: url('/img/lock.png');
+        }

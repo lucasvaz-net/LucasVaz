@@ -20,7 +20,7 @@ namespace LucasVaz.Data
             {
                 connection.Open();
 
-                using (var command = new SqlCommand("SELECT * FROM VWEXPERIENCIAS", connection))
+                using (var command = new SqlCommand("SELECT * FROM VWEXPERIENCIAS order by idtipoexperiencia", connection))
                 {
                     using (var reader = command.ExecuteReader())
                     {
