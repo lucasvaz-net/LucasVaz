@@ -8,18 +8,14 @@
     <meta charset="UTF-8">
 </head>
 <body>
-    <div id="estrelas">
+
         <div id="content-container">
             <h1>@Model.DsInicio</h1>
-            <div id="button-container" style="opacity:0">
+            <div id="button-container" style="opacity:0; width:65vh">
                 <a asp-controller="SobreMim" asp-action="Index" class="transparent-button">Vamos Lá</a>
             </div>
         </div>
-        @for (int i = 0; i < 300; i++)
-        {
-            <div class="estrela" style="top: @(new Random().Next(0, 100))vh; left: @(new Random().Next(0, 100))vw; animation-delay: @(new Random().Next(1, 100))s;"></div>
-        }
-    </div>
+
     <script>
         setTimeout(function () {
             document.getElementById("button-container").style.opacity = "1";

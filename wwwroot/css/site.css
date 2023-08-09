@@ -9,51 +9,53 @@ html {
         font-size: 16px;
         color: white
     }
-}
 
-body {
-    background-color: black;
-    color: white;
+    
 }
-
-
-h1 {
-    text-align: center;
-    font-family: 'Sanchez', serif;
-}
-p {
-    font-size: 20px;
-    text-align: left;
-    margin: 20px;
-    font-family: 'Sono';
-}
-
-.transparent-button {
-    background-color: transparent;
-    opacity: inherit;
-    color: #fff;
-    border: 2px solid #fff;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-@keyframes twinkling {
-    0% {
-        opacity: 0;
+    body {
+        background-color: black;
+        color: white;
     }
 
-    50% {
-        opacity: 1;
+
+    h1 {
+        text-align: center;
+        font-family: 'Sanchez', serif;
     }
 
-    100% {
-        opacity: 0;
+    p {
+        font-size: 20px;
+        text-align: left;
+        margin: 20px;
+        font-family: 'Sono';
     }
-}
+
+    .transparent-button {
+        background-color: transparent;
+        opacity: inherit;
+        color: #fff;
+        border: 2px solid #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    @keyframes twinkling {
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
 
 .estrela {
     position: fixed;
@@ -62,141 +64,120 @@ p {
     background: white;
     border-radius: 50%;
     animation: twinkling 1.3s infinite ease-in-out;
-
 }
 
-#button-container {
-    text-decoration: none;
-    margin-top: 20px;
-}
-#sidebar {
-    position: sticky;
-    top: 150px;
-    left: 0;
-    height: 50%;
-    width: 80px;
-    transition: width 0.3s;
-    background-color: black;
-}
-
-    #sidebar:hover {
-        width: 200px;
+    #button-container {
+        text-decoration: none;
+        margin-top: 20px;
     }
 
-    #sidebar .navbar-brand {
-        display: none;
+
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
     }
 
-    #sidebar:hover .navbar-brand {
-        display: inline;
+    .card {
+        background-color: rgba(128, 128, 128, 0.1);
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        color: white;
     }
-
-.icon {
-    width: 30px;
-    height: 30px;
-}
-
-.nav-text {
-    display: none;
-    margin-left: 10px;
-    color: white;
-}
-
-#sidebar:hover .nav-text {
-    display: inline;
-}
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.card {
-    background-color: rgba(128, 128, 128, 0.1);
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-    color:white;
-}
 
 #content-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 65vh;
-    height: 90vh; /* Isto faz com que o container ocupe toda a altura da viewport */
-}
-.sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 60px;
-    background-color: rgba(128, 128, 128, 0.1);
-    overflow-x: hidden;
-    transition: all .3s;
+    width: 65%; /* Limita a largura do contêiner a 50% da largura da tela */
+    max-width: 600px; /* O contêiner não será mais largo que 600px */
+    margin: 0 auto; /* Centraliza o contêiner horizontalmente */
+    height: 90vh;
+    text-align: center; /* Centraliza o texto horizontalmente */
 }
 
-.menu {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 100%;
-}
 
-    .menu li a {
-        display: block;
-        height: 50px;
-        background-size: 30px 30px;
-        background-position: center center;
-        background-repeat: no-repeat;
-        position: sticky;
+    #content-container h1 {
+        font-size: 2.5em; /* ajustar conforme necessário */
     }
-        .menu li a:hover::after,
-        .menu li a:active::after {
-            content: attr(title); /* Pega o conteúdo do atributo title do link */
-            position: absolute;
-            left: 0;
-            top: -20px; /* Ajuste conforme necessário */
-            width: 100%;
-            text-align: center;
-            color: #000; /* Ajuste a cor conforme necessário */
-            background-color: rgba(128, 128, 128, 0.1); /* Ajuste a cor de fundo conforme necessário */
+
+@media screen and (max-width: 768px) {
+    /* Reduzir o tamanho da fonte para telas pequenas */
+    #content-container h1 {
+        font-size: 2em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Reduzir ainda mais o tamanho da fonte para telas muito pequenas */
+    #content-container h1 {
+        font-size: 1.5em;
+    }
+}
+
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        background-color: rgba(128, 128, 128, 0.1);
+        overflow-x: hidden;
+        transition: all .3s;
+    }
+
+    .menu {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 100%;
+    }
+
+        .menu li a {
+            display: block;
+            height: 50px;
+            background-size: 30px 30px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            position: sticky;
         }
 
-        .menu li a.home {
-            background-image: url('/img/home.png');
-        }
+            .menu li a.home {
+                background-image: url('/img/home.png');
+            }
 
-        .menu li a.sobre {
-            background-image: url('/img/sobre.png');
-        }
+            .menu li a.sobre {
+                background-image: url('/img/sobre.png');
+            }
 
-        .menu li a.experiencia {
-            background-image: url('/img/experiencia.png');
-        }
+            .menu li a.experiencia {
+                background-image: url('/img/experiencia.png');
+            }
 
-        .menu li a.projetos {
-            background-image: url('/img/projetos.png');
-        }
+            .menu li a.projetos {
+                background-image: url('/img/projetos.png');
+            }
 
-        .menu li a.habilidade {
-            background-image: url('/img/habilidade.png');
-        }
+            .menu li a.habilidade {
+                background-image: url('/img/habilidade.png');
+            }
 
-        .menu li a.estudos {
-            background-image: url('/img/estudos.png');
-        }
+            .menu li a.estudos {
+                background-image: url('/img/estudos.png');
+            }
 
-        .menu li a.contato {
-            background-image: url('/img/contato.png');
-        }
+            .menu li a.contato {
+                background-image: url('/img/contato.png');
+            }
 
-        .menu li a.privacidade {
-            background-image: url('/img/lock.png');
-        }
+            .menu li a.privacidade {
+                background-image: url('/img/lock.png');
+            }
+
