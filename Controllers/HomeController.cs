@@ -1,7 +1,6 @@
 ﻿using LucasVaz.Data;
-using LucasVaz.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+
 
 namespace LucasVaz.Controllers
 {
@@ -19,6 +18,7 @@ namespace LucasVaz.Controllers
             var pessoa = _pessoaDal.GetPessoa(1);
             return View(pessoa);
         }
+
 
     }
 }

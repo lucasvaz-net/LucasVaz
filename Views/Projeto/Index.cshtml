@@ -61,10 +61,20 @@
 
                                 @if (!string.IsNullOrEmpty(projeto.LkWeb))
                                 {
-                                    <a href='@($"{projeto.LkWeb}/conta/login/{projeto.DsLoginTeste}/{projeto.DsSenhaTeste}")' target='_blank' class='transparent-button' type='button'>
-                                        <img src="~/img/link-conectado.png" width='34px' height='30px'> Ver na Web
-                                    </a>
+                                    if (string.IsNullOrEmpty(projeto.DsLoginTeste))
+                                    {
+                                        <a href='@projeto.LkWeb' target='_blank' class='transparent-button' type='button'>
+                                            <img src="~/img/link-conectado.png" width='34px' height='30px'> Ver na Web
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href='@($"{projeto.LkWeb}/conta/login/{projeto.DsLoginTeste}/{projeto.DsSenhaTeste}")' target='_blank' class='transparent-button' type='button'>
+                                            <img src="~/img/link-conectado.png" width='34px' height='30px'> Ver na Web
+                                        </a>
+                                    }
                                 }
+
                             </div>
                             <br />
                         </div>

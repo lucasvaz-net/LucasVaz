@@ -1,4 +1,5 @@
 ﻿using LucasVaz.Models;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace LucasVaz.Data
@@ -47,6 +48,33 @@ namespace LucasVaz.Data
                 }
             }
         }
+
+        public int? GetPessoaLogin(string email, string password)
+        {
+            using (var connection = _dataConnection.CreateConnection())
+            {
+                connection.Open();
+
+                string query = "SELECT IDPESSOA FROM VWPESSOA WHERE dslogin = @Email AND DsSenha = @Password";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@Password", password);
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+
+                    return null;
+                }
+            }
+        }
+
+
     }
 
 }

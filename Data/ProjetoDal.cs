@@ -27,7 +27,7 @@ namespace LucasVaz.Data
             {
                 connection.Open();
 
-                using (var command = new SqlCommand("SELECT * FROM VWPROJETOS", connection))
+                using (var command = new SqlCommand("SELECT * FROM VWPROJETOS order by idtecnologia", connection))
                 {
                     using (var reader = command.ExecuteReader())
                     {

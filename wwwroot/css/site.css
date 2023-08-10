@@ -180,4 +180,7 @@ html {
             .menu li a.privacidade {
                 background-image: url('/img/lock.png');
             }
+            .menu li a.login {
+                background-image: url('/img/Login.png');
+            }
 
