@@ -74,6 +74,32 @@ namespace LucasVaz.Data
             }
         }
 
+        public void EditarPessoa(Pessoa pessoa)
+        {
+            using (var connection = _dataConnection.CreateConnection())
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand("sp_AtualizarPessoa", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@IDPESSOA", 1);
+                    command.Parameters.AddWithValue("@DSPESSOA", pessoa.DsPessoa);
+                    command.Parameters.AddWithValue("@CDCPFCNPJ", pessoa.CdCpfCnpj ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@DTNASCIMENTO", pessoa.DtNascimento);
+                    command.Parameters.AddWithValue("@TPPESOA", pessoa.TpPessoa ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@DSLOGIN", pessoa.DsLogin ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@DSSENHA", pessoa.DsSenha ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@DSSOBREMIM", pessoa.DsSobreMim ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@DSINICIO", pessoa.DsInicio ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@log_USUARIO", pessoa.IdPessoa);
+                    command.Parameters.AddWithValue("@log_ORIGEM", "EditarPessoa");
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
     }
 

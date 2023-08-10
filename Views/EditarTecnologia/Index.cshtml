@@ -1,6 +1,41 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<h1>Aqui voce poderá atualizar Tecnologias</h1>
+﻿@model List<LucasVaz.Models.Tecnologia>
+
+<html>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Editar Tecnologias</h2>
+        <table class="table table-bordered table-hover" style="color:white">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tecnologia</th>
+                    <th>Habilidade</th>
+                    <th>Tipo</th>
+                    <th>Ícone</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tecnologia in Model)
+                {
+                    <tr>
+                        <td>@tecnologia.IdTecnologia</td>
+                        <td>@tecnologia.DsTecnologia</td>
+                        <td>@tecnologia.QtHabilidade</td>
+                        <td>@tecnologia.TipoTecnologia.DsTipoTecnologia</td>
+                        <td>
+                            <img src="~/img/@(tecnologia.DsTecnologia).svg" alt="@tecnologia.DsTecnologia" width="32" height="32" />
+                        </td>
+                        <td>
+                            <a asp-action="Editar" asp-route-id="@tecnologia.IdTecnologia" class="btn btn-sm btn-warning">Editar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-4 pb-4" id="button-container" style="width:65vh">
+        <a asp-controller="Login" asp-action="Home" class="transparent-button">Voltar</a>
+    </div>
+</body>
+</html>

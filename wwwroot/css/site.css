@@ -42,6 +42,10 @@ html {
         transition: all 0.3s ease;
         text-decoration: none;
     }
+        .transparent-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
 
     @keyframes twinkling {
         0% {

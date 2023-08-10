@@ -1,6 +1,36 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<h1>Aqui voce poderá atualizar Privacidade</h1>
+﻿@model List<LucasVaz.Models.Privacidade>
+
+<html>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Políticas de Privacidade</h2>
+        <table class="table table-bordered table-hover" style="color:white">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descrição</th>
+                    <th>Atualizada em</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var privacidade in Model)
+                {
+                    <tr>
+                        <td>@privacidade.IdPrivacidade</td>
+                        <td>@privacidade.DsTitulo</td>
+                        <td>@privacidade.DsTexto</td>
+                        <td>@privacidade.DtPrivacidade.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            <a asp-action="Editar" asp-route-id="@privacidade.IdPrivacidade" class="btn btn-sm btn-warning">Editar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-4 pb-4" id="button-container" style="width:65vh">
+        <a asp-controller="Login" asp-action="Home" class="transparent-button">Voltar</a>
+    </div>
+</body>
+</html>

@@ -1,8 +1,69 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model LucasVaz.Models.Pessoa
+
 @{
+    ViewData["Title"] = "Editar Pessoa";
 }
 
+<h1 class="display-4">Editar Dados</h1>
 
-<h1>Aqui voce poderá atualizar Pessoa</h1>
+<div id="estrelas">
+    <div>
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        <div class="flex-fill" style="background-color: rgba(128, 128, 128, 0.1); width:65vh">
+            <form asp-action="Index" asp-controller="EditarPessoa" method="post">
+                <!-- Demais campos, use como modelo o campo abaixo -->
+                <div class="form-group">
+                    <label for="DsPessoa">Nome:</label>
+                    <input type="text" id="DsPessoa" name="DsPessoa" class="form-control" value="@Model.DsPessoa" required />
+                </div>
+                <div class="form-group">
+                    <label for="CdCpfCnpj">CPF/CNPJ:</label>
+                    <input type="text" id="CdCpfCnpj" name="CdCpfCnpj" class="form-control" value="@Model.CdCpfCnpj" />
+                </div>
+                <div class="form-group">
+                    <label for="DtNascimento">Data de Nascimento:</label>
+                    <input type="date" id="DtNascimento" name="DtNascimento" class="form-control" value="@Model.DtNascimento.ToShortDateString()" />
+                </div>
+                <div class="form-group">
+                    <label for="TpPessoa">Tipo de Pessoa:</label>
+                    <input type="text" id="TpPessoa" name="TpPessoa" class="form-control" value="@Model.TpPessoa" />
+                </div>
+                <div class="form-group">
+                    <label for="DsLogin">Login:</label>
+                    <input type="text" id="DsLogin" name="DsLogin" class="form-control" value="@Model.DsLogin" />
+                </div>
+                <div class="form-group">
+                    <label for="DsSenha">Senha:</label>
+                    <input type="password" id="DsSenha" name="DsSenha" class="form-control" value="@Model.DsSenha" />
+                </div>
+                <div class="form-group">
+                    <label for="DsSobreMim">Sobre Mim:</label>
+                    <textarea id="DsSobreMim" name="DsSobreMim" class="form-control">@Model.DsSobreMim</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="DsInicio">Início:</label>
+                    <textarea id="DsInicio" name="DsInicio" class="form-control">@Model.DsInicio</textarea>
+                </div>
+                <div class="button-container d-flex justify-content-center mb-3">
+                    <button type="submit" class="transparent-button">Atualizar</button>
+                </div>
+
+            </form>
+        </div>
+        <div class="mt-4 pb-4" id="button-container"  style="width:65vh">
+            <a asp-controller="Login" asp-action="Home" class="transparent-button">Voltar</a>
+        </div>
+    </div>
+</div>

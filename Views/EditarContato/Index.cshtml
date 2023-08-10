@@ -1,0 +1,41 @@
+﻿@model List<LucasVaz.Models.Contato>
+
+<html>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Lista de Contatos</h2>
+        <table class="table table-bordered table-hover" style="color:white">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Contato</th>
+                    <th>Tipo</th>
+                    <th>Pessoa</th>
+                    <th>Cpf/Cnpj</th>
+                    <th>Data Nascimento</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var contato in Model)
+                {
+                    <tr>
+                        <td>@contato.IdContato</td>
+                        <td>@contato.DsContato</td>
+                        <td>@contato.TipoContato.DsTipoContato</td>
+                        <td>@contato.Pessoa.DsPessoa</td>
+                        <td>@contato.Pessoa.CdCpfCnpj</td>
+                        <td>@contato.Pessoa.DtNascimento.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            <a asp-action="Editar" asp-route-id="@contato.IdContato" class="btn btn-sm btn-warning">Editar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-4 pb-4" id="button-container" style="width:65vh">
+        <a asp-controller="Login" asp-action="Home" class="transparent-button">Voltar</a>
+    </div>
+</body>
+</html>
