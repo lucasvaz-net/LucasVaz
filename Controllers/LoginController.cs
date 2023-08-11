@@ -20,6 +20,11 @@ namespace LucasVaz.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+     
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Home", "Login");
+            }
             return View();
         }
 

@@ -14,19 +14,41 @@
     <div class="d-flex">
         <div class="container flex-grow-1" style="padding-left: 55px;">
             <main role="main" class="pb-3" style="margin-bottom: 50px;">
-                <div class="sidebar">
-                    <ul class="menu">
-                        <li title="Inicio"><a class="home" asp-area="" asp-controller="Home" asp-action="Index"></a></li>
-                        <li title="Sobre Mim"><a class="sobre" asp-area="" asp-controller="SobreMim" asp-action="Index"></a></li>
-                        <li title="Experiencia"><a class="experiencia" asp-area="" asp-controller="Experiencia" asp-action="Index"></a></li>
-                        <li title="Projetos"><a class="projetos" asp-area="" asp-controller="Projeto" asp-action="Index"></a></li>
-                        <li title="Skills"><a class="habilidade" asp-area="" asp-controller="Habilidade" asp-action="Index"></a></li>
-                        <li title="Estudos"><a class="estudos" asp-area="" asp-controller="Estudo" asp-action="Index"></a></li>
-                        <li title="Contato"><a class="contato" asp-area="" asp-controller="Contato" asp-action="Index"></a></li>
-                        <li title="Privacidade"><a class="privacidade" asp-area="" asp-controller="Privacidade" asp-action="Index"></a></li>
-                        <li title="Login"><a class="login" asp-area="" asp-controller="Login" asp-action="Home"></a></li>
-                    </ul>
-                </div>
+                @if (Context.User.Identity.IsAuthenticated)
+                {
+                    <div class="sidebar">
+                        <ul class="menu">
+                            <li title="Sobre Mim"><a class="sobre" asp-area="" asp-controller="EditarPessoa" asp-action="Index"></a></li>
+                            <li title="Experiencia"><a class="experiencia" asp-area="" asp-controller="EditarExperiencia" asp-action="Index"></a></li>
+                            <li title="Projetos"><a class="projetos" asp-area="" asp-controller="EditarProjeto" asp-action="Index"></a></li>
+                            <li title="Skills"><a class="habilidade" asp-area="" asp-controller="EditarTecnologia" asp-action="Index"></a></li>
+                            <li title="Estudos"><a class="estudos" asp-area="" asp-controller="EditarEstudo" asp-action="Index"></a></li>
+                            <li title="Contato"><a class="contato" asp-area="" asp-controller="EditarContato" asp-action="Index"></a></li>
+                            <li title="Privacidade"><a class="privacidade" asp-area="" asp-controller="EditarPrivacidade" asp-action="Index"></a></li>
+                            <li title="Logout">
+                                <a href="#" class="logout" onclick="document.getElementById('logoutForm').submit();"></a>
+                                <form id="logoutForm" asp-controller="Login" asp-action="Logout" method="post" class="d-none">
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <div class="sidebar">
+                        <ul class="menu">
+                            <li title="Inicio"><a class="home" asp-area="" asp-controller="Home" asp-action="Index"></a></li>
+                            <li title="Sobre Mim"><a class="sobre" asp-area="" asp-controller="SobreMim" asp-action="Index"></a></li>
+                            <li title="Experiencia"><a class="experiencia" asp-area="" asp-controller="Experiencia" asp-action="Index"></a></li>
+                            <li title="Projetos"><a class="projetos" asp-area="" asp-controller="Projeto" asp-action="Index"></a></li>
+                            <li title="Skills"><a class="habilidade" asp-area="" asp-controller="Habilidade" asp-action="Index"></a></li>
+                            <li title="Estudos"><a class="estudos" asp-area="" asp-controller="Estudo" asp-action="Index"></a></li>
+                            <li title="Contato"><a class="contato" asp-area="" asp-controller="Contato" asp-action="Index"></a></li>
+                            <li title="Privacidade"><a class="privacidade" asp-area="" asp-controller="Privacidade" asp-action="Index"></a></li>
+                            <li title="Login"><a class="login" asp-area="" asp-controller="Login" asp-action="Home"></a></li>
+                        </ul>
+                    </div>
+                }
                 @RenderBody()
             </main>
         </div>

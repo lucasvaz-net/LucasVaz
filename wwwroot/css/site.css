@@ -188,3 +188,6 @@ html {
                 background-image: url('/img/Login.png');
             }
 
+            .menu li a.logout {
+                background-image: url('/img/Login.png');
+            }
