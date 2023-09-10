@@ -1,0 +1,53 @@
+﻿@model List<LucasVaz.Models.Tecnologia>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <strong>Erros:</strong>
+        <ul>
+            @foreach (var modelStateKey in ViewData.ModelState.Keys)
+            {
+                foreach (var modelError in ViewData.ModelState[modelStateKey].Errors)
+                {
+                    <li>@modelError.ErrorMessage</li>
+                }
+            }
+        </ul>
+    </div>
+}
+
+<h2>Gerenciar Tecnologias</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Tecnologia</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tecnologia in Model)
+        {
+            <tr>
+                <td>@tecnologia.DsTecnologia</td>
+                <td><img src="~/img/@(tecnologia.DsTecnologia).svg" alt="@tecnologia.DsTecnologia" width="32" height="32" /></td>
+                <td>
+                    <form asp-action="GerenciarTecnologias" method="post" style="display:inline-block;">
+                        <input type="hidden" name="idProjeto" value="@ViewBag.IdProjeto" />
+                        <input type="hidden" name="idTecnologia" value="@tecnologia.IdTecnologia" />
+                        <input type="hidden" name="operacao" value="I" />
+                        <input type="submit" value="Inserir" />
+                    </form>
+
+                    <form asp-action="GerenciarTecnologias" method="post" style="display:inline-block;">
+                        <input type="hidden" name="idProjeto" value="@ViewBag.IdProjeto" />
+                        <input type="hidden" name="idTecnologia" value="@tecnologia.IdTecnologia" />
+                        <input type="hidden" name="operacao" value="D" />
+                        <input type="submit" value="Deletar" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-controller="EditarProjeto" asp-action="Edit" asp-route-id="@ViewBag.IdProjeto" class="transparent-button">Voltar</a>

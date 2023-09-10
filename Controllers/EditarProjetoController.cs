@@ -1,14 +1,135 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using LucasVaz.Data;
+using LucasVaz.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LucasVaz.Controllers
 {
     public class EditarProjetoController : Controller
     {
-        [Authorize]
-        public IActionResult Index()
+        private readonly ProjetoDal _projetoDal;
+
+        public EditarProjetoController(ProjetoDal projetoDal)
         {
-            return View();
+            _projetoDal = projetoDal;
         }
+
+        [Authorize]
+        public IActionResult Index(int pageNumber = 1, int pageSize = 10)
+        {
+            var projetos = _projetoDal.GetProjetos(pageNumber, pageSize);
+            return View(projetos);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult InserirProjeto()
+        {
+            return View(new Projeto());  
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult InserirProjeto(Projeto projeto)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    _projetoDal.InserirProjeto(projeto);
+
+                    TempData["Message"] = "Projeto inserido com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                TempData["Message"] = "Verifique os dados e tente novamente.";
+                return View(projeto);
+            }
+            catch (Exception ex)
+            {
+                TempData["Message"] = "Erro detalhado: " + ex.Message + " - " + ex.StackTrace;
+                return View(projeto);
+            }
+
+        }
+
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Projeto projeto = _projetoDal.GetProjetoById(id);
+
+            if (projeto == null)
+            {
+                return NotFound();
+            }
+
+            return View(projeto);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Projeto projeto)
+        {
+            try
+            {
+                // Verifica se o modelo é válido
+                if (ModelState.IsValid)
+                {
+                    // Tentativa de edição do projeto
+                    _projetoDal.EditarProjeto(projeto);
+
+                    TempData["SuccessMessage"] = "Projeto atualizado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    // Mensagens de erros de validação de modelo
+                    var errorList = ModelState.Values.SelectMany(m => m.Errors).Select(e => e.ErrorMessage).ToList();
+                    TempData["ErrorMessage"] = string.Join(" | ", errorList);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Define a mensagem de erro para exibição
+                TempData["ErrorMessage"] = $"Erro ao atualizar projeto: {ex.Message}";
+            }
+
+            // Se chegou até aqui, há um problema. Retorne à view de edição com os detalhes atuais.
+            return View(projeto);
+        }
+
+
+        [HttpGet]
+        public IActionResult GerenciarTecnologias(int idProjeto)
+        {
+            
+            ViewBag.IdProjeto = idProjeto;
+            var tecnologias = _projetoDal.ObterTodasAsTecnologias();
+
+            return View(tecnologias);
+        }
+
+
+        [HttpPost]
+        public IActionResult GerenciarTecnologias(int idProjeto, int idTecnologia, char operacao)
+        {
+            try
+            {
+                _projetoDal.GerenciarTecnologiaProjeto(idProjeto, idTecnologia, operacao);
+                return RedirectToAction("Edit", new { id = idProjeto });
+            }
+            catch (Exception ex)
+            {
+                ViewBag.IdProjeto = idProjeto;
+                var tecnologias = _projetoDal.ObterTodasAsTecnologias();
+                ModelState.AddModelError("", "Ocorreu um erro ao gerenciar tecnologias do projeto: " + ex.Message);
+                return View(tecnologias);
+            }
+
+        }
+
+
+
     }
 }

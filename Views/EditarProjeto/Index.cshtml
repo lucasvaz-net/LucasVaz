@@ -1,6 +1,74 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IPagedList<LucasVaz.Models.Projeto>
+@using System.Web;
+@using PagedList.Mvc;
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
 @{
+   
 }
-<h1>Aqui voce poderá atualizar Privacidades</h1>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projetos</title>
+   
+</head>
+<body>
+
+    <h1>Editar Projetos</h1>
+    <div>
+       <a asp-controller="EditarProjeto" asp-action="InserirProjeto" class="transparent-button">Novo Projeto</a>
+        <table class="table table-bordered table-hover mt-4" style="color:white">
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Comentário</th>
+                    <th>Link Github</th>
+                    <th>Link do Site</th>
+                    <th>Tipo de Projeto</th>
+                    <th>Pessoa Associada</th>
+                    <th>Tecnologias</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var projeto in Model)
+                {
+                    <tr>
+                        <td>@projeto.DsProjeto</td>
+                        <td>@projeto.CmProjeto</td>
+                        <td><a href="@projeto.LkGithub" target="_blank">@projeto.LkGithub</a></td>
+                        <td><a href="@projeto.LkWeb" target="_blank">@projeto.LkWeb</a></td>
+                        <td>@projeto.TipoProjeto.DsTipoProjeto</td>
+                        <td>@projeto.Pessoa.DsPessoa</td>
+                        <td>
+                            @if (projeto.TecnologiasProjetos != null && projeto.TecnologiasProjetos.Any())
+                            {
+                                <ul>
+                                    @foreach (var tecnologiaProjeto in projeto.TecnologiasProjetos)
+                                    {
+                                        <li>@tecnologiaProjeto.Tecnologia.DsTecnologia</li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <span>Nenhuma tecnologia associada</span>
+                            }
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", "EditarProjeto", new { id = projeto.IdProjeto })" class="transparent-button" style="text-align: center; vertical-align: middle;">Editar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+        <!-- Paginação (se estiver usando X.PagedList) -->
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { pageNumber = page }))
+
+    </div>
+
+</body>
+</html>

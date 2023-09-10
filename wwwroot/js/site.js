@@ -1,23 +1,27 @@
-﻿function typeWriter(elemento) {
-    const texto = elemento.innerHTML;
-    elemento.innerHTML = '';
+﻿document.addEventListener("DOMContentLoaded", function () {
 
-    let index = 0;
+    function typeWriter(elemento) {
+        if (!elemento) return; // Se o elemento for null ou undefined, saia da função
 
-    const escrever = () => {
-        elemento.innerHTML += texto[index];
-        index++;
+        const texto = elemento.innerHTML;
+        elemento.innerHTML = '';
 
-        if (index < texto.length) {
-            setTimeout(escrever, 100);
-        } else {
+        let index = 0;
 
-        }
-    };
+        const escrever = () => {
+            elemento.innerHTML += texto[index];
+            index++;
 
-    escrever();
-}
+            if (index < texto.length) {
+                setTimeout(escrever, 100);
+            }
+        };
 
-const titulo = document.querySelector('h1');
-typeWriter(titulo);
+        escrever();
+    }
 
+    const titulo = document.querySelector('h1');
+    if (titulo) {
+        typeWriter(titulo);
+    }
+});

@@ -1,6 +1,44 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<h1>Aqui voce poderá atualizar Estudos</h1>
+﻿@model List<LucasVaz.Models.Estudo>
+
+<h1>Estudos</h1>
+
+
+<a asp-action="Create" asp-controller="EditarEstudo" class="btn transparent-button mt-4">Inserir Novo Estudo</a>
+
+<table class="table mt-4" style="color:white">
+    <thead>
+        <tr>
+            <th>Estudo</th>
+            <th>Local</th>
+            <th>Data</th>
+            <th>Tipo de Estudo</th>
+            <th>Pessoa</th>
+            <th>Tecnologias</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var estudo in Model)
+        {
+            <tr>
+                <td>@estudo.DsEstudo</td>
+                <td>@estudo.DsLocal</td>
+                <td>@estudo.DtEstudo</td>
+                <td>@estudo.TipoEstudo.DsTipoEstudo</td>
+                <td>@estudo.Pessoa.DsPessoa</td>
+                <td>
+                    <ul>
+                        @foreach (var tecnologia in estudo.EstudosTecnologias)
+                        {
+                            <li>@tecnologia.Tecnologia.DsTecnologia</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="EditarEstudo" asp-route-id="@estudo.IdEstudo" class="btn transparent-button">Editar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
