@@ -1,6 +1,13 @@
-﻿@model List<LucasVaz.Models.Experiencia>
+﻿@model IPagedList<LucasVaz.Models.Experiencia>
 
 <h1>Experiências</h1>
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
 
 <table class="table mt-4" style="color:white">
     <thead>
@@ -24,7 +31,7 @@
                 <td>@experiencia.DsFuncao</td>
                 <td>@experiencia.DsLocal</td>
                 <td>@experiencia.DtIni.ToShortDateString()</td>
-                <td>@(experiencia.DtFim.ToShortDateString() ?? "Atual")</td>
+                <td>@(experiencia.DtFim?.ToShortDateString() ?? "Atual")</td>
                 <td>@experiencia.TipoExperiencia.DsTipoExperiencia</td>
                 <td>@experiencia.Pessoa.DsPessoa</td>
                 <td>
@@ -45,8 +52,11 @@
                 <td>
                     <a href="@Url.Action("Edit", "EditarExperiencia", new { id = experiencia.IdExperiencia })" class="transparent-button" style="text-align: center; vertical-align: middle;">Editar</a>
                 </td>
-                <td>
             </tr>
         }
     </tbody>
 </table>
+
+<div class="pagination-container">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>
