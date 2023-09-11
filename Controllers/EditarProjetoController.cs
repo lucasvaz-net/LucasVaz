@@ -15,9 +15,9 @@ namespace LucasVaz.Controllers
         }
 
         [Authorize]
-        public IActionResult Index(int pageNumber = 1, int pageSize = 10)
+        public IActionResult Index(int pageNumber = 1, int pageSize = 25)
         {
-            var projetos = _projetoDal.GetProjetos(pageNumber, pageSize);
+            var projetos = _projetoDal.GetAllProjetos(pageNumber, pageSize);
             return View(projetos);
         }
 

@@ -1,6 +1,6 @@
 ﻿@model List<LucasVaz.Models.Experiencia>
 
-<h2>Experiências</h2>
+<h1>Experiências</h1>
 
 <table class="table mt-4" style="color:white">
     <thead>
@@ -13,6 +13,7 @@
             <th>Tipo Experiência</th>
             <th>Pessoa</th>
             <th>Tecnologias</th>
+            <th>Ação</th>
         </tr>
     </thead>
     <tbody>
@@ -27,13 +28,24 @@
                 <td>@experiencia.TipoExperiencia.DsTipoExperiencia</td>
                 <td>@experiencia.Pessoa.DsPessoa</td>
                 <td>
-                    <ul>
-                        @foreach (var tecnologia in experiencia.ExperienciasTecnologias)
-                        {
-                            <li>@tecnologia.Tecnologia.DsTecnologia</li>
-                        }
-                    </ul>
+                    @if (experiencia.ExperienciasTecnologias != null && experiencia.ExperienciasTecnologias.Any())
+                    {
+                        <ul>
+                            @foreach (var tecnologiaExperiencia in experiencia.ExperienciasTecnologias)
+                            {
+                                <li><img src="~/img/@(tecnologiaExperiencia.Tecnologia.DsTecnologia).svg" alt="@tecnologiaExperiencia.Tecnologia.DsTecnologia" width="32" height="32" /></li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <span>Nenhuma tecnologia associada</span>
+                    }
                 </td>
+                <td>
+                    <a href="@Url.Action("Edit", "EditarExperiencia", new { id = experiencia.IdExperiencia })" class="transparent-button" style="text-align: center; vertical-align: middle;">Editar</a>
+                </td>
+                <td>
             </tr>
         }
     </tbody>

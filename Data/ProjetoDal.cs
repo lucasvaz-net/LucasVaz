@@ -19,16 +19,29 @@ namespace LucasVaz.Data
 
         public IPagedList<Projeto> GetProjetos(int pageNumber, int pageSize)
         {
-            return GetProjetosByCriteria($"SELECT * FROM VWPROJETOS order by idtecnologia", null, pageNumber, pageSize);
+            return GetProjetosByCriteria($"SELECT * FROM VWPROJETOS WHERE IDTECNOLOGIA IS NOT NULL ORDER BY NRORDEM", null, pageNumber, pageSize);
+        }
+        public IPagedList<Projeto> GetAllProjetos(int pageNumber, int pageSize)
+        {
+            return GetProjetosByCriteria($"SELECT * FROM VWPROJETOS   ORDER BY NRORDEM", null, pageNumber, pageSize);
         }
 
         public IPagedList<Projeto> GetProjetosPorTecnologia(List<int> idsTecnologia, int pageNumber, int pageSize)
         {
-            var query = $"SELECT * FROM VWPROJETOS WHERE IDTECNOLOGIA IN (@ids)";
-            var parameters = new SqlParameter("@ids", string.Join(',', idsTecnologia));
+            var allProjects = new List<Projeto>();
 
-            return GetProjetosByCriteria(query, new[] { parameters }, pageNumber, pageSize);
+            foreach (var id in idsTecnologia)
+            {
+                var query = $"SELECT * FROM VWPROJETOS WHERE IDPROJETO IN (SELECT DISTINCT IDPROJETO FROM VWPROJETOS WHERE  IDTECNOLOGIA = @id)";
+                var parameters = new SqlParameter("@id", id);
+
+                var projects = GetProjetosByCriteria(query, new[] { parameters }, pageNumber, pageSize).ToList();
+                allProjects.AddRange(projects);
+            }
+
+            return new PagedList<Projeto>(allProjects, pageNumber, pageSize);
         }
+
 
         public Projeto GetProjetoById(int idProjeto)
         {
@@ -80,6 +93,7 @@ namespace LucasVaz.Data
                 DsProjeto = reader.GetString(reader.GetOrdinal("DSPROJETO")),
                 CmProjeto = reader.GetString(reader.GetOrdinal("CMPROJETO")),
                 LkGithub = reader.GetString(reader.GetOrdinal("LKGITHUB")),
+                NrOrdem = reader.GetInt32(reader.GetOrdinal("NRORDEM")),
                 TipoProjeto = new TipoProjeto
                 {
                     IdTipoProjeto = reader.GetInt32(reader.GetOrdinal("IDTIPOPROJETO")),
@@ -117,16 +131,21 @@ namespace LucasVaz.Data
         {
             return new TecnologiaProjeto
             {
-                IdTecnologiasProjetos = reader.GetInt32(reader.GetOrdinal("IDTECNOLOGIASPROJETOS")),
+                IdTecnologiasProjetos = reader.IsDBNull(reader.GetOrdinal("IDTECNOLOGIASPROJETOS"))
+                                        ? (int?)null : reader.GetInt32(reader.GetOrdinal("IDTECNOLOGIASPROJETOS")),
                 Tecnologia = new Tecnologia
                 {
-                    IdTecnologia = reader.GetInt32(reader.GetOrdinal("IDTECNOLOGIA")),
-                    DsTecnologia = reader.GetString(reader.GetOrdinal("DSTECNOLOGIA")),
-                    QtHabilidade = reader.GetInt32(reader.GetOrdinal("QTHABILIDADE"))
+                    IdTecnologia = reader.IsDBNull(reader.GetOrdinal("IDTECNOLOGIA"))
+                                   ? (int?)null : reader.GetInt32(reader.GetOrdinal("IDTECNOLOGIA")),
+                    DsTecnologia = reader.IsDBNull(reader.GetOrdinal("DSTECNOLOGIA"))
+                                   ? null : reader.GetString(reader.GetOrdinal("DSTECNOLOGIA")),
+                    QtHabilidade = reader.IsDBNull(reader.GetOrdinal("QTHABILIDADE"))
+                                   ? (int?)null : reader.GetInt32(reader.GetOrdinal("QTHABILIDADE"))
                 },
                 Projeto = projeto
             };
         }
+
 
         public List<Tecnologia> ObterTodasAsTecnologias()
         {
@@ -136,7 +155,7 @@ namespace LucasVaz.Data
             {
                 connection.Open();
 
-                using (var command = new SqlCommand("SELECT DISTINCT IDTECNOLOGIA, DSTECNOLOGIA FROM VWPROJETOS", connection))
+                using (var command = new SqlCommand("SELECT DISTINCT IDTECNOLOGIA, DSTECNOLOGIA FROM VWHABILIDADE", connection))
                 {
                     using (var reader = command.ExecuteReader())
                     {
@@ -211,7 +230,7 @@ namespace LucasVaz.Data
                     command.Parameters.AddWithValue("@IdTipoProjeto", projeto.TipoProjeto.IdTipoProjeto);
                     command.Parameters.AddWithValue("@log_Usuario", 1);
                     command.Parameters.AddWithValue("@log_Origem", "EditarProjeto");
-
+                    command.Parameters.AddWithValue("@nrordem", projeto.NrOrdem);
                     command.ExecuteNonQuery();
                 }
             }
@@ -234,10 +253,11 @@ namespace LucasVaz.Data
                     command.Parameters.AddWithValue("@LkWeb", (object)projeto.LkWeb ?? DBNull.Value);
                     command.Parameters.AddWithValue("@DsLoginTeste", (object)projeto.DsLoginTeste ?? DBNull.Value);
                     command.Parameters.AddWithValue("@DsSenhaTeste", (object)projeto.DsSenhaTeste ?? DBNull.Value);
-                    command.Parameters.AddWithValue("@IdPessoa", projeto.Pessoa.IdPessoa);
+                    command.Parameters.AddWithValue("@IdPessoa", 1);
                     command.Parameters.AddWithValue("@IdTipoProjeto", projeto.TipoProjeto.IdTipoProjeto);
-                    command.Parameters.AddWithValue("@log_Usuario", 1);
+                    command.Parameters.AddWithValue("@log_Usuario", "1");
                     command.Parameters.AddWithValue("@log_Origem", "EditarProjeto");
+                    command.Parameters.AddWithValue("@nrordem", projeto.NrOrdem);
 
                     command.ExecuteNonQuery();
                 }

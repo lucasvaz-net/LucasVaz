@@ -9,7 +9,7 @@
         public string? LkWeb { get; set; }
         public string? DsLoginTeste { get; set; }
         public string? DsSenhaTeste { get; set; }
-       // public int IdTipoProjeto { get; set; }
+        public int? NrOrdem { get; set; }
         public Pessoa? Pessoa { get; set; }
         public TipoProjeto? TipoProjeto { get; set; }
         public List<TecnologiaProjeto>? TecnologiasProjetos { get; set; }

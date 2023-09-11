@@ -18,7 +18,7 @@ namespace LucasVaz.Controllers
         public IActionResult FiltrarPorTecnologia(List<int> idsTecnologia, int? page, int? pageSize)
         {
             int pageNumber = page ?? 1;
-            int size = pageSize ?? 10;
+            int size = pageSize ?? 25;
             var projetos = _projetoDal.GetProjetosPorTecnologia(idsTecnologia, pageNumber, size);
             ViewBag.Tecnologias = _projetoDal.ObterTodasAsTecnologias();
             return View("Index", projetos);
@@ -27,7 +27,7 @@ namespace LucasVaz.Controllers
         public IActionResult Index(int? page, int? pageSize)
         {
             int pageNumber = page ?? 1;
-            int size = pageSize ?? 12;
+            int size = pageSize ?? 25;
             var projetos = _projetoDal.GetProjetos(pageNumber, size);
             ViewBag.Tecnologias = _projetoDal.ObterTodasAsTecnologias();
             return View(projetos);
