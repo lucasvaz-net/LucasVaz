@@ -6,13 +6,13 @@
 <!DOCTYPE html>
 <html>
 <body>
-<div class="container my-4">
-    <h1 class="mb-4">Editar Projetos</h1>
-    <div>
-        <a asp-controller="EditarProjeto" asp-action="InserirProjeto" class="btn btn-primary mb-3">Novo Projeto</a>
-        <div class="table-responsive">
-            <table class="table table-bordered" style="color:white">
-                <thead class="thead-dark">
+    <div class="container my-4">
+        <h1 class="mb-4">Editar Projetos</h1>
+        <div>
+            <a asp-controller="EditarProjeto" asp-action="InserirProjeto" class="btn btn-primary mb-3">Novo Projeto</a>
+            <div class="table-responsive">
+                <table class="table table-bordered" style="color:white">
+                    <thead class="thead-dark">
                         <tr>
                             <th>Descrição</th>
                             <th>Comentário</th>
@@ -24,8 +24,8 @@
                             <th>Tecnologias:</th>
                             <th>Ações</th>
                         </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                         @foreach (var projeto in Model)
                         {
                             <tr>
@@ -56,11 +56,11 @@
                                 </td>
                             </tr>
                         }
-                </tbody>
-            </table>
-        </div>
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { pageNumber = page }))
-        </div>
-    </div>
+                    </tbody>
+                </table>
+                <div class="pagination-container">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
 </body>
 </html>

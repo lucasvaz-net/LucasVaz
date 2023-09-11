@@ -2,8 +2,10 @@
 
 <html>
 <body>
+    <h1 class="mb-4">Políticas de Privacidade</h1>
+    <a asp-controller="EditarPrivacidade" asp-action="Create" class="btn btn-primary mb-3 mt-4">Nova Privacidade</a>
     <div class="container mt-5">
-        <h2 class="mb-4">Políticas de Privacidade</h2>
+        
         <table class="table table-bordered table-hover" style="color:white">
             <thead>
                 <tr>
@@ -22,7 +24,7 @@
                         <td>@privacidade.DsTexto</td>
                         <td>@privacidade.DtPrivacidade.ToString("dd/MM/yyyy")</td>
                         <td>
-                            <a asp-action="Editar" asp-route-id="@privacidade.IdPrivacidade" class="btn btn-sm btn-warning">Editar</a>
+                            <a asp-action="Edit" asp-route-id="@privacidade.IdPrivacidade" class="btn btn-sm btn-warning">Editar</a>
                         </td>
                     </tr>
                 }

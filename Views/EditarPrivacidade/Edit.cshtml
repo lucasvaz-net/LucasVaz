@@ -1,0 +1,38 @@
+﻿@model LucasVaz.Models.Privacidade
+
+@{
+    ViewData["Title"] = "Editar Privacidade";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="IdPrivacidade" />
+
+    <div class="form-group">
+        <label asp-for="DsTitulo">Título:</label>
+        <input asp-for="DsTitulo" class="form-control" />
+        <span asp-validation-for="DsTitulo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DsTexto">Texto:</label>
+        <textarea asp-for="DsTexto" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="DsTexto" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NrOrdemListagem">Ordem de Listagem:</label>
+        <input asp-for="NrOrdemListagem" type="number" class="form-control" />
+        <span asp-validation-for="NrOrdemListagem" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,7 +1,14 @@
-﻿@model List<LucasVaz.Models.Estudo>
+﻿@using PagedList.Mvc;
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@model IPagedList<LucasVaz.Models.Estudo>
 
 <h1>Estudos</h1>
 
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
 
 <a asp-action="Create" asp-controller="EditarEstudo" class="btn transparent-button mt-4">Inserir Novo Estudo</a>
 
@@ -30,7 +37,7 @@
                     <ul>
                         @foreach (var tecnologia in estudo.EstudosTecnologias)
                         {
-                            <li>@tecnologia.Tecnologia.DsTecnologia</li>
+                            <img src="@Url.Content($"~/img/{tecnologia.Tecnologia.DsTecnologia}.svg")" width="16" height="16" />
                         }
                     </ul>
                 </td>
@@ -42,3 +49,6 @@
     </tbody>
 </table>
 
+<div class="pagination-container">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>

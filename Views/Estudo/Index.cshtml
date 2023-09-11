@@ -1,9 +1,12 @@
-﻿@using LucasVaz.Models
-@model IEnumerable<LucasVaz.Models.Estudo>
+﻿@using PagedList.Mvc;
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@model IPagedList<LucasVaz.Models.Estudo>
 
 @{
     ViewData["Title"] = "Estudos";
 }
+
 <head>
     <meta charset="UTF-8">
 </head>
@@ -11,6 +14,10 @@
 <body>
     <div id="estrelas">
         <h1 class="display-4">Estudos</h1>
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+        }
         <div class="row">
             @foreach (var estudo in Model)
             {
@@ -32,6 +39,12 @@
         <div id="button-container" style="display: flex; margin-top:50px;  margin-bottom:50px; justify-content: center; align-items: center;">
             <a asp-controller="Contato" asp-action="Index" class="transparent-button">Entre em contato</a>
         </div>
+
+        <div class="pagination-container">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </div>
+
+
     </div>
 
 </body>

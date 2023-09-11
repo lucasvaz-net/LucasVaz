@@ -2,12 +2,14 @@
 using LucasVaz.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace LucasVaz.Controllers
 {
     public class EditarEstudoController : Controller
     {
         private readonly EstudoDal _estudoDal;
+        private const int PageSize = 10;  // Ajuste conforme sua necessidade
 
         public EditarEstudoController(EstudoDal estudoDal)
         {
@@ -15,11 +17,18 @@ namespace LucasVaz.Controllers
         }
 
         [Authorize]
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            var estudo = _estudoDal.GetEstudos();
-            return View(estudo);
+            try
+            {
+                var estudos = _estudoDal.GetEstudos(page, PageSize);
+                return View(estudos);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = $"Houve um erro ao obter os estudos: {ex.Message}";
+                return View();  // Você pode retornar para uma view de Erro, se preferir
+            }
         }
     }
 }
-

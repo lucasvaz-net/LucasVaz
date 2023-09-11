@@ -1,5 +1,8 @@
-﻿@model IPagedList<LucasVaz.Models.Experiencia>
+﻿@using PagedList.Mvc;
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
 
+@model IPagedList<LucasVaz.Models.Experiencia>
 <h1>Experiências</h1>
 
 @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
@@ -31,7 +34,7 @@
                 <td>@experiencia.DsFuncao</td>
                 <td>@experiencia.DsLocal</td>
                 <td>@experiencia.DtIni.ToShortDateString()</td>
-                <td>@(experiencia.DtFim?.ToShortDateString() ?? "Atual")</td>
+                <td>@(experiencia.DtFim.ToShortDateString() ?? "Atual")</td>
                 <td>@experiencia.TipoExperiencia.DsTipoExperiencia</td>
                 <td>@experiencia.Pessoa.DsPessoa</td>
                 <td>

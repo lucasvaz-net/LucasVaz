@@ -1,4 +1,7 @@
 ﻿@using PagedList.Mvc;
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+
 @model IPagedList<LucasVaz.Models.Experiencia>
 
 <div id="estrelas">
@@ -25,7 +28,7 @@
                         <p class="text-center">
                             @foreach (var experienciaTecnologia in experiencia.ExperienciasTecnologias)
                             {
-                                <img src="@Url.Content($"~/img/{experienciaTecnologia.Tecnologia.DsTecnologia}.svg")" width="30" height="30" />
+                                <img src="@Url.Content($"~/img/{experienciaTecnologia.Tecnologia.DsTecnologia}.svg")" width="16" height="16" />
                             }
                         </p>
                         <div class="button-container d-flex justify-content-center">
@@ -45,8 +48,8 @@
             }
         </div>
 
-        <div class="mt-4">
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.PageNumbersOnly)
+        <div class="pagination-container">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
         </div>
 
         <div id="button-container" style="display: flex; margin-top:50px; justify-content: center; align-items: center;">
