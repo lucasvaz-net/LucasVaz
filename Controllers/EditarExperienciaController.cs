@@ -1,4 +1,5 @@
 ﻿using LucasVaz.Data;
+using LucasVaz.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,5 +31,52 @@ namespace LucasVaz.Controllers
                 return View(); 
             }
         }
+
+
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var experiencia = _experienciaDal.GetExperienciaById(id);
+
+            if (experiencia == null)
+            {
+                return NotFound();
+            }
+
+            return View(experiencia);
+        }
+
+
+        [HttpPost]
+
+        public IActionResult Edit(int id, Experiencia experiencia)
+        {
+            if (id != experiencia.IdExperiencia)
+            {
+                return BadRequest();
+            }
+
+            _experienciaDal.UpsertExperiencia(experiencia, "U");
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Create(Experiencia experiencia)
+        {
+            _experienciaDal.UpsertExperiencia(experiencia, "I");
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
     }
 }

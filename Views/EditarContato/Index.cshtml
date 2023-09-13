@@ -11,8 +11,6 @@
                     <th>Contato</th>
                     <th>Tipo</th>
                     <th>Pessoa</th>
-                    <th>Cpf/Cnpj</th>
-                    <th>Data Nascimento</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -24,10 +22,8 @@
                         <td>@contato.DsContato</td>
                         <td>@contato.TipoContato.DsTipoContato</td>
                         <td>@contato.Pessoa.DsPessoa</td>
-                        <td>@contato.Pessoa.CdCpfCnpj</td>
-                        <td>@(contato.Pessoa.DtNascimento.HasValue ? contato.Pessoa.DtNascimento.Value.ToString("dd/MM/yyyy") : "Data não disponível")</td>
                         <td>
-                            <a asp-action="Editar" asp-route-id="@contato.IdContato" class="btn btn-sm btn-warning">Editar</a>
+                            <a asp-action="Edit" asp-route-id="@contato.IdContato" class="btn btn-sm btn-warning">Editar</a>
                         </td>
                     </tr>
                 }

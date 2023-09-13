@@ -1,4 +1,5 @@
 ﻿using LucasVaz.Data;
+using LucasVaz.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,5 +27,38 @@ namespace LucasVaz.Controllers
 
             return View(contatos);
         }
+
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var contato = _contatoDal.GetContatoById(id);
+            if (contato == null)
+            {
+                return NotFound();
+            }
+            return View(contato);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, Contato contato)
+        {
+            if (id != contato.IdContato)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                _contatoDal.UpdateContato(contato); 
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View("Error", new string("Erro ao atualizar o contato"));
+            }
+        }
+
+
     }
 }

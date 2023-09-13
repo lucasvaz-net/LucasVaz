@@ -1,0 +1,44 @@
+﻿@model LucasVaz.Models.Estudo
+
+@{
+    ViewData["Title"] = "Editar Estudo";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="IdEstudo" />
+
+    <div class="form-group">
+        <label asp-for="DsEstudo">Descrição do Estudo:</label>
+        <input asp-for="DsEstudo" class="form-control" />
+        <span asp-validation-for="DsEstudo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DsLocal">Local do Estudo:</label>
+        <input asp-for="DsLocal" class="form-control" />
+        <span asp-validation-for="DsLocal" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DtEstudo">Data do Estudo:</label>
+        <input asp-for="DtEstudo" type="date" class="form-control" />
+        <span asp-validation-for="DtEstudo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TipoEstudo.IdTipoEstudo">ID do Tipo de Estudo:</label>
+        <input asp-for="TipoEstudo.IdTipoEstudo" type="number" class="form-control" />
+        <span asp-validation-for="TipoEstudo.IdTipoEstudo" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

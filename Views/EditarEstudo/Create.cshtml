@@ -1,0 +1,34 @@
+﻿@model LucasVaz.Models.Estudo
+@{
+    ViewData["Title"] = "Inserir Estudo";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Create" method="post" class="custom-form">
+
+    <div class="form-group">
+        <label for="DsEstudo">Descrição do Estudo:</label>
+        <input type="text" class="form-control" id="DsEstudo" name="DsEstudo" required />
+    </div>
+
+    <div class="form-group">
+        <label for="DsLocal">Local do Estudo:</label>
+        <input type="text" class="form-control" id="DsLocal" name="DsLocal" required />
+    </div>
+
+    <div class="form-group">
+        <label for="DtEstudo">Data do Estudo:</label>
+        <input type="date" class="form-control" id="DtEstudo" name="DtEstudo" required />
+    </div>
+
+    <div class="form-group">
+        <label for="TipoEstudo.IdTipoEstudo">ID do Tipo do Estudo:</label>
+        <input type="number" class="form-control" id="TipoEstudo.IdTipoEstudo" name="TipoEstudo.IdTipoEstudo" required />
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <input type="submit" value="Inserir Estudo" class="btn transparent-button" />
+        <a asp-action="Index" class="btn transparent-button">Cancelar</a>
+    </div>
+
+</form>

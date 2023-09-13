@@ -1,6 +1,8 @@
 ﻿using LucasVaz.Data;
+using LucasVaz.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace LucasVaz.Controllers
 {
@@ -18,13 +20,51 @@ namespace LucasVaz.Controllers
         {
             var habilidades = _habilidadeDal.GetHabilidades();
 
-            if (habilidades == null || !habilidades.Any())
+            if (!habilidades.Any())
             {
-                // Aqui, você pode optar por retornar uma view de erro ou uma mensagem para o usuário.
                 return View("Error", new string("Nenhuma habilidade/tecnologia encontrada"));
             }
 
             return View(habilidades);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Tecnologia tecnologia)
+        {
+            if (ModelState.IsValid)
+            {
+                _habilidadeDal.UpsertTecnologia(tecnologia, "I"); 
+                return RedirectToAction(nameof(Index));
+            }
+            return View(tecnologia);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var tecnologia = _habilidadeDal.GetHabilidadeById(id);
+            if (tecnologia == null)
+            {
+                return NotFound();
+            }
+            return View(tecnologia);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Tecnologia tecnologia)
+        {
+            if (ModelState.IsValid)
+            {
+                _habilidadeDal.UpsertTecnologia(tecnologia, "U");  
+                return RedirectToAction(nameof(Index));
+            }
+            return View(tecnologia);
         }
     }
 }

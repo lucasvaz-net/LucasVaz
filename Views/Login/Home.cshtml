@@ -1,11 +1,67 @@
 ﻿@{
-    ViewData["Title"] = "Home";
+    Layout = null; 
 }
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+
+        .sidebar ul.menu {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .sidebar ul.menu li {
+                margin: 10px 0;
+                transition: all 0.3s;
+            }
+
+                .sidebar ul.menu li:hover {
+                    transform: scale(1.1);
+                }
+
+                .sidebar ul.menu li a {
+                    display: block;
+                    padding: 10px 20px;
+                    background-color: #007BFF;
+                    color: #FFF;
+                    text-decoration: none;
+                    border-radius: 5px;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                }
+
+        .container{
+            width:40vh;
+            height:50px;
+            padding:50px;
+
+        }
+    </style>
 </head>
 <body>
-   <h1>Bem vindo, Você está Logado!</h1>
+    <h1>Painel de Ajustes</h1>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 sidebar">
+                <ul class="menu">
+                    <li title="Sobre Mim"><a class="sobre btn btn-primary btn-block" asp-area="" asp-controller="EditarPessoa" asp-action="Index">Editar Dados</a></li>
+                    <li title="Experiencia"><a class="experiencia btn btn-primary btn-block" asp-area="" asp-controller="EditarExperiencia" asp-action="Index">Editar Experiencia</a></li>
+                    <li title="Projetos"><a class="projetos btn btn-primary btn-block" asp-area="" asp-controller="EditarProjeto" asp-action="Index">Editar Projetos</a></li>
+                    <li title="Skills"><a class="habilidade btn btn-primary btn-block" asp-area="" asp-controller="EditarTecnologia" asp-action="Index">Editar Tecnologias</a></li>
+                    <li title="Estudos"><a class="estudos btn btn-primary btn-block" asp-area="" asp-controller="EditarEstudo" asp-action="Index">Editar Estudos</a></li>
+                    <li title="Contato"><a class="contato btn btn-primary btn-block" asp-area="" asp-controller="EditarContato" asp-action="Index">Editar Contatos</a></li>
+                    <li title="Privacidade"><a class="privacidade btn btn-primary btn-block" asp-area="" asp-controller="EditarPrivacidade" asp-action="Index">Editar Politica de Privacidade</a></li>
+                    <li title="Logout">
+                        <a href="#" class="logout btn btn-danger btn-block" onclick="document.getElementById('logoutForm').submit();">Logout</a>
+                        <form id="logoutForm" asp-controller="Login" asp-action="Logout" method="post" class="d-none">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

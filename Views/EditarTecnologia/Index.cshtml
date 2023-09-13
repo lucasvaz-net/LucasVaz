@@ -2,8 +2,9 @@
 
 <html>
 <body>
-    <div class="container mt-5">
-        <h2 class="mb-4">Editar Tecnologias</h2>
+  
+        <h1 class="mb-4">Editar Tecnologias</h1>
+    <a asp-controller="EditarTecnologia" asp-action="Create" class="btn transparent-button mb-3 mt-4">Nova Tecnologia</a>
         <table class="table table-bordered table-hover" style="color:white">
             <thead>
                 <tr>
@@ -23,17 +24,17 @@
                         <td>@tecnologia.DsTecnologia</td>
                         <td>@tecnologia.QtHabilidade</td>
                         <td>@tecnologia.TipoTecnologia.DsTipoTecnologia</td>
-                        <td>
+                        <td style="background-color:white">
                             <img src="~/img/@(tecnologia.DsTecnologia).svg" alt="@tecnologia.DsTecnologia" width="32" height="32" />
                         </td>
                         <td>
-                            <a asp-action="Editar" asp-route-id="@tecnologia.IdTecnologia" class="btn btn-sm btn-warning">Editar</a>
+                            <a asp-action="Edit" asp-route-id="@tecnologia.IdTecnologia" class="btn transparent-button">Editar</a>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
-    </div>
+
     <div class="mt-4 pb-4" id="button-container" style="width:65vh">
         <a asp-controller="Login" asp-action="Home" class="transparent-button">Voltar</a>
     </div>

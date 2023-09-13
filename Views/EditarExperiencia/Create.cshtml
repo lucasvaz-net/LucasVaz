@@ -1,0 +1,45 @@
+﻿@model LucasVaz.Models.Experiencia
+@{
+    ViewData["Title"] = "Inserir Experiência";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Create" method="post" class="custom-form">
+
+    <div class="form-group">
+        <label for="DsExperiencia">Descrição da Experiência:</label>
+        <input type="text" class="form-control" id="DsExperiencia" name="DsExperiencia" required />
+    </div>
+
+    <div class="form-group">
+        <label for="DsFuncao">Função:</label>
+        <input type="text" class="form-control" id="DsFuncao" name="DsFuncao" required />
+    </div>
+
+    <div class="form-group">
+        <label for="DsLocal">Local da Experiência:</label>
+        <input type="text" class="form-control" id="DsLocal" name="DsLocal" required />
+    </div>
+
+    <div class="form-group">
+        <label for="DtIni">Data de Início:</label>
+        <input type="date" class="form-control" id="DtIni" name="DtIni" required />
+    </div>
+
+    <div class="form-group">
+        <label for="DtFim">Data de Fim:</label>
+        <input type="date" class="form-control" id="DtFim" name="DtFim" />
+    </div>
+
+    <div class="form-group">
+        <label for="TipoExperiencia.IdTipoExperiencia">ID do Tipo da Experiência:</label>
+        <input type="number" class="form-control" id="TipoExperiencia.IdTipoExperiencia" name="TipoExperiencia.IdTipoExperiencia" required />
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <input type="submit" value="Inserir Experiência" class="btn transparent-button" />
+        <a asp-action="Index" class="btn transparent-button">Cancelar</a>
+    </div>
+
+</form>

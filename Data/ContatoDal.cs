@@ -1,5 +1,6 @@
 ﻿using LucasVaz.Models;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace LucasVaz.Data
@@ -73,5 +74,30 @@ namespace LucasVaz.Data
                 }
             };
         }
+
+
+        public void UpdateContato(Contato contato)
+        {
+            using (var connection = _dataConnection.CreateConnection())
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand("sp_UpdateContato", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@IDCONTATO", contato.IdContato);
+                    command.Parameters.AddWithValue("@DSCONTATO", contato.DsContato);
+                    command.Parameters.AddWithValue("@IDTIPOCONTATO", contato.TipoContato.IdTipoContato);
+                    command.Parameters.AddWithValue("@log_Origem", "EditarContato");
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
+
     }
 }

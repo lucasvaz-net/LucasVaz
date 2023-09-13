@@ -1,5 +1,6 @@
 ﻿using LucasVaz.Models;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace LucasVaz.Data
@@ -67,5 +68,28 @@ namespace LucasVaz.Data
                 }
             };
         }
+
+        public void UpsertTecnologia(Tecnologia tecnologia, string operacao)
+        {
+            using (var connection = _dataConnection.CreateConnection())
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand("sp_UpsertTecnologias", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@IDTECNOLOGIA", tecnologia.IdTecnologia);
+                    command.Parameters.AddWithValue("@DSTECNOLOGIA", tecnologia.DsTecnologia);
+                    command.Parameters.AddWithValue("@IDTIPOTECNOLOGIA", tecnologia.TipoTecnologia.IdTipoTecnologia);
+                    command.Parameters.AddWithValue("@QTHABILIDADE", tecnologia.QtHabilidade);
+                    command.Parameters.AddWithValue("@OPERACAO", operacao);
+                    command.Parameters.AddWithValue("@log_ORIGEM", "EditarTecnologia"); 
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }

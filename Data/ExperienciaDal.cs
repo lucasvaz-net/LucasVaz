@@ -107,7 +107,30 @@ namespace LucasVaz.Data
             };
         }
 
+        public void UpsertExperiencia(Experiencia experiencia, string operacao)
+        {
+            using (var connection = _dataConnection.CreateConnection())
+            {
+                connection.Open();
 
+                using (var command = new SqlCommand("sp_UpsertExperiencia", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@IDEXPERIENCIA", experiencia.IdExperiencia);
+                    command.Parameters.AddWithValue("@DSEXPERIENCIA", experiencia.DsExperiencia);
+                    command.Parameters.AddWithValue("@DSFUNCAO", experiencia.DsFuncao);
+                    command.Parameters.AddWithValue("@DSLOCAL", experiencia.DsLocal);
+                    command.Parameters.AddWithValue("@DTINI", experiencia.DtIni);
+                    command.Parameters.AddWithValue("@DTFIM", experiencia.DtFim);
+                    command.Parameters.AddWithValue("@IDTIPOEXPERIENCIA", experiencia.TipoExperiencia.IdTipoExperiencia);
+                    command.Parameters.AddWithValue("@OPERACAO", operacao);
+                    command.Parameters.AddWithValue("@log_ORIGEM", "NomeDaOrigem");  // Substitua pelo nome correto da origem
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
 
 

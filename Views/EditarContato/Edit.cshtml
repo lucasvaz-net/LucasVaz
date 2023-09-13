@@ -1,0 +1,32 @@
+﻿@model LucasVaz.Models.Contato
+
+@{
+    ViewData["Title"] = "Editar Contato";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="IdContato" />
+
+    <div class="form-group">
+        <label asp-for="DsContato">Descrição do Contato:</label>
+        <input asp-for="DsContato" class="form-control" />
+        <span asp-validation-for="DsContato" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TipoContato.IdTipoContato">ID do Tipo de Contato:</label>
+        <input asp-for="TipoContato.IdTipoContato" type="number" class="form-control" />
+        <span asp-validation-for="TipoContato.IdTipoContato" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

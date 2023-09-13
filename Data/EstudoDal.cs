@@ -1,4 +1,5 @@
 ﻿using LucasVaz.Models;
+using System.Data;
 using System.Data.SqlClient;
 using X.PagedList;
 
@@ -17,6 +18,14 @@ namespace LucasVaz.Data
         {
             return GetEstudosByCriteria($"SELECT * FROM VW_ESTUDOS", null, pageNumber, pageSize);
         }
+        public Estudo GetEstudoById(int idEstudo)
+        {
+            var estudos = GetEstudosByCriteria($"SELECT * FROM VW_ESTUDOS WHERE IDESTUDO = @IdEstudo",
+                                                new[] { new SqlParameter("@IdEstudo", idEstudo) }, 1, 1);
+
+            return estudos.FirstOrDefault();
+        }
+
 
         private IPagedList<Estudo> GetEstudosByCriteria(string query, SqlParameter[] parameters, int pageNumber, int pageSize)
         {
@@ -94,5 +103,31 @@ namespace LucasVaz.Data
                 Tecnologia = tecnologia
             };
         }
+
+
+        public void UpsertEstudo(Estudo estudo, string operacao)
+        {
+            using (var connection = _dataConnection.CreateConnection())
+            {
+                using (var command = new SqlCommand("sp_UpsertEstudos", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@IDESTUDO", estudo.IdEstudo);
+                    command.Parameters.AddWithValue("@DSESTUDO", estudo.DsEstudo);
+                    command.Parameters.AddWithValue("@DSLOCAL", estudo.DsLocal);
+                    command.Parameters.AddWithValue("@DTESTUDO", estudo.DtEstudo);
+                    command.Parameters.AddWithValue("@IDTIPOESTUDO", estudo.TipoEstudo.IdTipoEstudo);
+                    command.Parameters.AddWithValue("@OPERACAO", operacao);
+                    command.Parameters.AddWithValue("@log_ORIGEM", "EditarEstudo"); 
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
     }
 }

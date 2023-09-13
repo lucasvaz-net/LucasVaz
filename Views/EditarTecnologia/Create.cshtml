@@ -1,0 +1,30 @@
+﻿@model LucasVaz.Models.Tecnologia
+@{
+    ViewData["Title"] = "Inserir Tecnologia";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Create" method="post" class="custom-form">
+
+    <div class="form-group">
+        <label for="DsTecnologia">Descrição da Tecnologia:</label>
+        <input type="text" class="form-control" id="DsTecnologia" name="DsTecnologia" required />
+    </div>
+
+    <div class="form-group">
+        <label for="QtHabilidade">Nível de Habilidade:</label>
+        <input type="number" class="form-control" id="QtHabilidade" name="QtHabilidade" required />
+    </div>
+
+    <div class="form-group">
+        <label for="TipoTecnologia.IdTipoTecnologia">ID do Tipo da Tecnologia:</label>
+        <input type="number" class="form-control" id="TipoTecnologia.IdTipoTecnologia" name="TipoTecnologia.IdTipoTecnologia" required />
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <input type="submit" value="Inserir Tecnologia" class="btn transparent-button" />
+        <a asp-action="Index" class="btn transparent-button">Cancelar</a>
+    </div>
+
+</form>
