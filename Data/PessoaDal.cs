@@ -93,7 +93,7 @@ namespace LucasVaz.Data
                     command.Parameters.AddWithValue("@DSSENHA", pessoa.DsSenha ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@DSSOBREMIM", pessoa.DsSobreMim ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@DSINICIO", pessoa.DsInicio ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@log_USUARIO", pessoa.IdPessoa);
+                    command.Parameters.AddWithValue("@log_USUARIO", 1);
                     command.Parameters.AddWithValue("@log_ORIGEM", "EditarPessoa");
 
                     command.ExecuteNonQuery();

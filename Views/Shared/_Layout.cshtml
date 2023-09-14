@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Lucas Vaz</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/SiteL.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/LucasVaz.styles.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css2?family=Sanchez&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Sono&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="d-flex">
-        <div class="container flex-grow-1" style="padding-left: 55px;">
-            <main role="main" class="pb-3" style="margin-bottom: 50px;">
+        <div class="container flex-grow-1 mb-5">
+            <main role="main" class="pb-3">
                 @if (Context.User.Identity.IsAuthenticated)
                 {
                     <div class="sidebar">
@@ -35,34 +35,33 @@
                 }
                 else
                 {
-                    <div class="sidebar">
-                        <ul class="menu">
-                            <li title="Inicio"><a class="home" asp-area="" asp-controller="Home" asp-action="Index"></a></li>
-                            <li title="Sobre Mim"><a class="sobre" asp-area="" asp-controller="SobreMim" asp-action="Index"></a></li>
-                            <li title="Experiencia"><a class="experiencia" asp-area="" asp-controller="Experiencia" asp-action="Index"></a></li>
-                            <li title="Projetos"><a class="projetos" asp-area="" asp-controller="Projeto" asp-action="Index"></a></li>
-                            <li title="Skills"><a class="habilidade" asp-area="" asp-controller="Habilidade" asp-action="Index"></a></li>
-                            <li title="Estudos"><a class="estudos" asp-area="" asp-controller="Estudo" asp-action="Index"></a></li>
-                            <li title="Contato"><a class="contato" asp-area="" asp-controller="Contato" asp-action="Index"></a></li>
-                            <li title="Privacidade"><a class="privacidade" asp-area="" asp-controller="Privacidade" asp-action="Index"></a></li>
-                            <li title="Login"><a class="login" asp-area="" asp-controller="Login" asp-action="Home"></a></li>
-                        </ul>
-                    </div>
+                    <nav class="navbar navbar-expand-lg navbar-light" style="justify-content:center">
+                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="SobreMim" asp-action="Index">Sobre Mim</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Experiencia" asp-action="Index">Experiência</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Projeto" asp-action="Index">Projetos</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Habilidade" asp-action="Index">Skills</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Estudo" asp-action="Index">Estudos</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Contato" asp-action="Index">Contato</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Privacidade" asp-action="Index">Privacidade</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Login" asp-action="Home">Login</a></li>
+                            </ul>
+                    </nav>
                 }
                 @RenderBody()
             </main>
         </div>
 
-        <footer class="footer text-muted text-center" style="display: inline-block;">
+        <footer class="footer text-muted text-center mt-4" style="display: inline-block;">
 
             <div class="container">
                 &copy; 2023 - Desenvolvido por Lucas Vaz - <a asp-area="" asp-controller="Privacidade" asp-action="Index">Politica de Privacidade</a>
             </div>
         </footer>
-        @for (int i = 0; i < 150; i++)
-        {
-            <div class="estrela" style="top: @(new Random().Next(0, 100))vh; left: @(new Random().Next(0, 100))vw; animation-delay: @(new Random().Next(1, 20))s;"></div>
-        }
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

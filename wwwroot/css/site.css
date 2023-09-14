@@ -96,27 +96,25 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 65%; /* Limita a largura do contêiner a 50% da largura da tela */
-    max-width: 600px; /* O contêiner não será mais largo que 600px */
-    margin: 0 auto; /* Centraliza o contêiner horizontalmente */
+    width: 65%; 
+    max-width: 600px; 
+    margin: 0 auto; 
     height: 90vh;
-    text-align: center; /* Centraliza o texto horizontalmente */
+    text-align: center; 
 }
 
 
     #content-container h1 {
-        font-size: 2.5em; /* ajustar conforme necessário */
+        font-size: 2.5em;
     }
 
 @media screen and (max-width: 768px) {
-    /* Reduzir o tamanho da fonte para telas pequenas */
     #content-container h1 {
         font-size: 2em;
     }
 }
 
 @media screen and (max-width: 480px) {
-    /* Reduzir ainda mais o tamanho da fonte para telas muito pequenas */
     #content-container h1 {
         font-size: 1.5em;
     }
@@ -195,7 +193,7 @@ html {
 
 
 .custom-form {
-    background-color: rgba(255, 255, 255, 0.1); /* Transparência */
+    background-color: rgba(255, 255, 255, 0.1); 
     padding: 20px;
     border-radius: 10px;
     max-width: 700px;
@@ -204,7 +202,7 @@ html {
 }
 
     .custom-form label {
-        color: #ddd; /* Cor clara para os labels */
+        color: #ddd; 
     }
 
 .transparent-button {
