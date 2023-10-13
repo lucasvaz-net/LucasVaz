@@ -11,9 +11,10 @@
     }
 }
 
+
 body {
     color: black;
-    background: url('/img/body.jpg');
+    background: url('/img/banner.jpg');
     }
 
 h1 {
@@ -22,16 +23,16 @@ h1 {
 }
 
 p {
-    font-size: 14px;
+    font-size: 16px;
     text-align: left;
-    margin: 20px;
+    margin: 10px 0;
+    padding-left: 20px;
     font-family: 'Sono';
 }
 h2 {
     font-size: 15px;
     text-align: left;
     margin: 20px;
-   /* font-family: 'Sono';*/
 }
 
 
@@ -51,10 +52,10 @@ h2 {
         color: black;
     }
 
-.card {
-    background-color: rgba(255, 235, 230, 0.8);
+.cardgeral {
+    background-color: rgba(128, 128, 128, 0.1);
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(220, 190, 180, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     color: black;
     flex: 1;
 }
@@ -88,141 +89,56 @@ h2 {
     }
 }
 
-
-.navbar {
+.custom-pagination {
+    justify-content: center; /* centraliza o conteúdo */
     text-align: center;
-    background-color: transparent;
-    padding: 0.5rem 1rem;
+}
+
+    .custom-pagination .pagination li a, .custom-pagination .pagination li span {
+        margin: 0 5px; /* adiciona um pequeno espaço entre os itens de paginação */
+        border-radius: 5px; /* adiciona bordas arredondadas aos itens */
+        transition: background-color 0.2s; /* transição suave para hover */
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+
+    }
+
+        .custom-pagination .pagination li a:hover {
+            background-color: #C6DEFF;
+            color: white;
+        }
+
+.pagination {
     justify-content: center;
+
 }
 
-.navbar-brand {
-    color: #333; 
-    font-weight: bold;
-}
-
-.navbar-toggler {
-    border-color: #333; 
-}
-
-.navbar-toggler-icon {
-    background-color: #333; 
-}
-
-.navbar-nav .nav-link {
-    color: #333; 
-    transition: color 0.3s ease; 
-}
-
-    .navbar-nav .nav-link:hover {
-        color: #666; 
+    .pagination li span {
+        border: 1px solid black;
     }
 
 
-
-.sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 60px;
-    background-color: rgba(255, 255, 255, 0.1);
-    overflow-x: hidden;
-    transition: all .3s;
+*::-webkit-scrollbar {
+    width: 10px;
 }
 
-
-
-        .menu li a:hover {
-            background-color: rgba(0, 0, 0, 0.1);
-        }
-
-
-.sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 60px;
-    background-color: #eaeaea;
-    overflow-x: hidden;
-    transition: all .3s;
+*::-webkit-scrollbar-track {
+    background: transparent;
 }
 
-.menu {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 100%;
+*::-webkit-scrollbar-thumb {
+    background: #A193CA;
+    border-radius: 3px;
 }
 
-    .menu li a {
-        display: block;
-        height: 50px;
-        background-size: 30px 30px;
-        background-position: center center;
-        background-repeat: no-repeat;
-        position: sticky;
+@media (max-width: 767.98px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 50px; 
+        width: 100%;
+        background-color: rgba(128, 128, 128, 0.1);
+        z-index: 1000; 
     }
-
-        .menu li a.home {
-            background-image: url('/img/home.png');
-        }
-
-        .menu li a.sobre {
-            background-image: url('/img/sobre.png');
-        }
-
-        .menu li a.experiencia {
-            background-image: url('/img/experiencia.png');
-        }
-
-        .menu li a.projetos {
-            background-image: url('/img/projetos.png');
-        }
-
-        .menu li a.habilidade {
-            background-image: url('/img/habilidade.png');
-        }
-
-        .menu li a.estudos {
-            background-image: url('/img/estudos.png');
-        }
-
-        .menu li a.contato {
-            background-image: url('/img/contato.png');
-        }
-
-        .menu li a.privacidade {
-            background-image: url('/img/lock.png');
-        }
-
-        .menu li a.login {
-            background-image: url('/img/Login.png');
-        }
-
-        .menu li a.logout {
-            background-image: url('/img/Login.png');
-        }
-        
-.custom-form {
-    background-color: rgba(0, 0, 0, 0.05); 
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 700px;
-    margin: 50px auto;
-    width: 70vh;
-}
-
-    .custom-form label {
-        color: #555; 
-    }
-
-.transparent-button {
-    background-color: transparent;
-    border: 2px solid black;
-    color: black;
 }

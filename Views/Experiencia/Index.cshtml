@@ -1,58 +1,51 @@
 ﻿@using PagedList.Mvc;
 @using X.PagedList;
 @using X.PagedList.Mvc.Core;
-
 @model IPagedList<LucasVaz.Models.Experiencia>
+<head>
 
+
+</head>
+
+<html>
+<body>
 <div id="estrelas">
-    <h1 class="display-4">Experiencias</h1>
 
-    @if (ViewBag.ErrorMessage != null)
-    {
-        <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
-    }
-
-    <div class="container mt-4">
-        <div class="row">
-            @foreach (var experiencia in Model)
-            {
-                <div class="col-md-6 col-lg-4 mt-4 d-flex">
-                    <div class="card flex-column text-center">
-                        <br />
-                        <h3>@experiencia.DsExperiencia</h3>
-                        <p>@experiencia.DsLocal</p>
-                        <p>@experiencia.TipoExperiencia.DsTipoExperiencia</p>
-                        <div style="flex-grow: 1;">
-                            <p>@experiencia.DsFuncao</p>
-                        </div>
-                        <p class="text-center">
-                            @foreach (var experienciaTecnologia in experiencia.ExperienciasTecnologias)
-                            {
-                                <img src="@Url.Content($"~/img/{experienciaTecnologia.Tecnologia.DsTecnologia}.svg")" width="16" height="16" />
-                            }
-                        </p>
-                        <div class="button-container d-flex justify-content-center">
-                            @if (experiencia.DtFim.Year > 0001)
-                            {
-                                <p>@($"{experiencia.DtIni.ToString("yyyy")} - {experiencia.DtFim.ToString("yyyy")}")</p>
-                            }
-                            else
-                            {
-                                <p>@($"{experiencia.DtIni.ToString("yyyy")} - Atualmente")</p>
-                            }
-                        </div>
-
-                        <br />
-                    </div>
+    <h1>Experiencias</h1>
+    <div class="row">
+        @foreach (var experiencia in Model)
+        {
+            <div class="col-md-6 col-lg-4 mt-4 d-flex">
+                <div class="cardgeral flex-fill text-center">
+                <h3>@experiencia.DsExperiencia</h3>
+                <p>@experiencia.DsLocal</p>
+                <p>@experiencia.TipoExperiencia.DsTipoExperiencia</p>
+                <p>@experiencia.DsFuncao</p>
+                <p class="text-center">
+                    @foreach (var experienciaTecnologia in experiencia.ExperienciasTecnologias)
+                    {
+                        <img src="@Url.Content($"~/img/{experienciaTecnologia.Tecnologia.DsTecnologia}.svg")" width="30" height="30" />
+                    }
+                </p>
+                <div class="button-container">
+                    @if (experiencia.DtFim.Year > 0001)
+                    {
+                     <p class ="text-center">@($"{experiencia.DtIni.ToString("yyyy")} - {experiencia.DtFim.ToString("yyyy")}")</p>
+                    }
+                    else
+                    {
+                    <p class="text-center">@($"{experiencia.DtIni.ToString("yyyy")} - Atualmente")</p>
+                    }
                 </div>
-            }
-        </div>
+            </div>
+            </div>
+        }
+    </div>
 
-        <div class="pagination-container">
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-        </div>
 
-        <div id="button-container" style="display: flex; margin-top:50px; justify-content: center; align-items: center;">
+        <div id="button-container" style="display: flex; margin-top:50px;  margin-bottom:50px; justify-content: center; align-items: center;">
             <a asp-controller="Projeto" asp-action="Index" class="transparent-button">Veja meus Projetos</a>
         </div>
-    </div>
+</div>
+</body>
+</html>

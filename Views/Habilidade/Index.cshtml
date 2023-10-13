@@ -8,51 +8,84 @@
 
 <head>
     <meta charset="UTF-8">
+    <style>
+        .centralizar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+
+    </style>
 </head>
 <html>
 <body>
-    <div id="estrelas">
+    <div class="centralizar">
         <h1 class="display-4">Habilidades</h1>
-        <div class="text-center">
-            <img src="https://github-readme-stats.vercel.app/api/top-langs?username=lucasvaz-net&locale=pt-br&hide_title=false&layout=compact&card_width=320&langs_count=12&theme=radical&hide_border=false" height="150" alt="languages graph" style="margin: 0; padding: 0;" />
-            <img src="https://github-readme-stats.vercel.app/api?username=lucasvaz-net&hide_title=false&hide_rank=true&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=radical&locale=pt-br&hide_border=false" height="150" alt="stats graph" style="margin: 0; padding: 0;" />
-            <img src="https://streak-stats.demolab.com?user=lucasvaz-net&locale=pt-br&mode=weekly&theme=radical&hide_border=false&border_radius=5" height="150" alt="streak graph" style="margin: 0; padding: 0;" />
+        <div style="height: 650px; width: 60%;">
+            <canvas id="skillsChart" style="height:100%;"></canvas>
         </div>
-
-        <div style="height: 500px; width: 100%;">
-            <canvas id="skillsChart"></canvas>
-        </div>
-
         <div id="button-container" style="display: flex; margin-top:50px; margin-bottom:50px; justify-content: center; align-items: center;">
             <a asp-controller="Estudo" asp-action="Index" class="transparent-button">Conheça minha formação</a>
         </div>
     </div>
 
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var ctx = document.getElementById('skillsChart').getContext('2d');
-            var chart = new Chart(ctx, {
+
+            var data = {
+                labels: @Html.Raw(Json.Serialize(Model.Select(t => t.DsTecnologia).ToList())),
+                datasets: [{
+                    label: 'Nível de habilidade',
+                    data: @Html.Raw(Json.Serialize(Model.Select(t => t.QtHabilidade).ToList())),
+                    borderColor: '#34495E',
+                    backgroundColor: 'rgba(52, 73, 94, 0.5)',
+
+                    borderWidth: 2,
+                }]
+            };
+
+            var config = {
                 type: 'bar',
-                data: {
-                    labels: @Html.Raw(Json.Serialize(Model.Select(t => t.DsTecnologia).ToList())),
-                    datasets: [{
-                        label: 'Nível de habilidade',
-                        data: @Html.Raw(Json.Serialize(Model.Select(t => t.QtHabilidade).ToList())),
-                        backgroundColor: [
-                            'rgba(255, 255, 255, 0.5)',
-                        ],
-                        borderColor: [
-                            'rgba(255, 255, 255, 0.5)',
-                        ],
-                        borderWidth: 1
-                    }]
-                },
+                data: data,
                 options: {
-                    responsive: true,
-                    maintainAspectRatio: false
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    elements: {
+                        bar: {
+                            borderWidth: 2,
+                            borderRadius: 10  
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                beginAtZero: true,
+                                suggestedMax: 10,
+                                fontColor: "#333"
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                fontColor: "#000000"
+                            }
+                        }
+                    }
                 }
-            });
+            };
+
+            new Chart(ctx, config);
         });
     </script>
 </body>

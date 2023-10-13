@@ -14,15 +14,11 @@
 <body>
     <div id="estrelas">
         <h1 class="display-4">Estudos</h1>
-        @if (ViewBag.ErrorMessage != null)
-        {
-            <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
-        }
         <div class="row">
             @foreach (var estudo in Model)
             {
                 <div class="col-md-6 col-lg-4 mt-4 d-flex">
-                    <div class="card flex-fill text-center">
+                    <div class="cardgeral flex-fill text-center">
                         <br />
                         <h3>@estudo.DsEstudo</h3>
                         <p class="text-center">@estudo.TipoEstudo.DsTipoEstudo | @estudo.DsLocal | @DateTime.Parse(estudo.DtEstudo).ToString("yyyy")</p>
@@ -36,14 +32,16 @@
                 </div>
             }
         </div>
+        <div class="container mt-4 text-center">
+            <nav aria-label="Page navigation" class="custom-pagination text-center">
+                <ul class="pagination">
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+                </ul>
+            </nav>
+        </div>
         <div id="button-container" style="display: flex; margin-top:50px;  margin-bottom:50px; justify-content: center; align-items: center;">
             <a asp-controller="Contato" asp-action="Index" class="transparent-button">Entre em contato</a>
         </div>
-
-        <div class="pagination-container">
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-        </div>
-
 
     </div>
 

@@ -10,66 +10,67 @@
 </head>
 <body>
     <div id="estrelas">
-
-        <h1 class="display-4">Contato</h1>
-        <div class="row align-items-center">
-            <div>
-                <div class="text-center">
-                    @foreach (var contato in Model)
+        <h1 class="display-4 text-center mb-5">Contato</h1>
+        <div class="text-center mb-5">
+            @foreach (var contato in Model)
+            {
+                if (contato?.TipoContato?.DsTipoContato != null)
+                {
+                    string link = "", iconClass = "", altText = "";
+                    switch (contato.TipoContato.DsTipoContato.ToLower())
                     {
-                        if (contato?.TipoContato?.DsTipoContato != null &&
-                        contato.TipoContato.DsTipoContato.Equals("Telefone", StringComparison.OrdinalIgnoreCase))
-                        {
-                            <a href="@contato.DsContato" class="icon-link m-lg-3">
-                                <img src="~/img/chamada-telefonica.png" alt="Telefone" class="img-fluid" style="max-width: 40px;">
-                            </a>
-                        }
-
-                        if (contato?.TipoContato?.DsTipoContato != null &&
-                        contato.TipoContato.DsTipoContato.Equals("Email", StringComparison.OrdinalIgnoreCase))
-                        {
-                            <a href="mailto:@contato.DsContato" class="icon-link m-lg-3">
-                                <img src="~/img/o-email.png" alt="E-mail" class="img-fluid" style="max-width: 40px;">
-                            </a>
-                        }
-
-                        if (contato?.TipoContato?.DsTipoContato != null &&
-                        contato.TipoContato.DsTipoContato.Equals("WhatsApp", StringComparison.OrdinalIgnoreCase))
-                        {
-                            <a href="@contato.DsContato" class="icon-link m-lg-3">
-                                <img src="~/img/whatsapp.png" alt="WhatsApp" class="img-fluid" style="max-width: 40px;">
-                            </a>
-                        }
-
-                        if (contato?.TipoContato?.DsTipoContato != null &&
-                        contato.TipoContato.DsTipoContato.Equals("LinkedIn", StringComparison.OrdinalIgnoreCase))
-                        {
-                            <a href="@contato.DsContato" class="icon-link m-lg-3">
-                                <img src="~/img/linkedin.png" alt="LinkedIn" class="img-fluid" style="max-width: 40px;">
-                            </a>
-                        }
+                        case "telefone":
+                            link = $"tel:{contato.DsContato}";
+                            iconClass = "fas fa-phone-alt";
+                            altText = "Telefone";
+                            break;
+                        case "email":
+                            link = $"mailto:{contato.DsContato}";
+                            iconClass = "fas fa-envelope";
+                            altText = "E-mail";
+                            break;
+                        case "whatsapp":
+                            link = contato.DsContato;
+                            iconClass = "fab fa-whatsapp";
+                            altText = "WhatsApp";
+                            break;
+                        case "linkedin":
+                            link = contato.DsContato;
+                            iconClass = "fab fa-linkedin";
+                            altText = "LinkedIn";
+                            break;
                     }
-                </div>
-            </div>
+
+                    <a href="@link" class="icon-link m-3">
+                        <i class="@iconClass" style="font-size: 24px;"></i>
+                        <span class="sr-only">@altText</span>
+                    </a>
+                }
+            }
         </div>
-        <div class="container mt-3">
-            <form target="_blank" action="https://formsubmit.co/contato@lucasvaz.dev.br" method="POST" class="bg-transparent">
+        <div class="container mt-3 text-center">
+            <form target="_blank" action="https://formsubmit.co/contato@lucasvaz.dev.br" method="POST">
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col">
-                            <input type="text" name="name" class="form-control form-control-lg bg-transparent text-white" placeholder="Nome" required>
+                            <input type="hidden" name="_next" value="https://lucasvaz.dev.br/contato">
+                            <input type="hidden" name="_subject" value="Novo email de contato vindo do seu Site!">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="text" name="name" class="form-control form-control-lg bg-transparent" placeholder="Nome" required style="border-color: black; color: black;">
                         </div>
                         <div class="col">
-                            <input type="email" name="email" class="form-control form-control-lg bg-transparent text-white" placeholder="Email" required>
+                            <input type="email" name="email" class="form-control form-control-lg bg-transparent" placeholder="Email" required style="border-color: black; color: black;">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="Mensagem" class="form-control form-control-lg bg-transparent text-white" name="message" rows="10" required></textarea>
+                    <textarea placeholder="Mensagem" class="form-control form-control-lg bg-transparent" name="message" rows="10" required style="border-color: black; color: black;"></textarea>
                 </div>
-                <button type="submit" class="transparent-button">Enviar</button>
+                <button type="submit" class="transparent-button text-center">Enviar</button>
             </form>
         </div>
+
     </div>
 </body>
 </html>

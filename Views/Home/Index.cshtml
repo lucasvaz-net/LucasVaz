@@ -3,23 +3,86 @@
 @{
     ViewData["Title"] = "Inicio";
 }
+
 <html>
 <head>
     <meta charset="UTF-8">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #content-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            height: 30vh;
+        }
+
+        p {
+            margin-top: 50px;
+            text-align: center;
+            max-width: 100%;
+            font-size: 20px;
+        }
+
+        #sobremim {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+            #sobremim .image-container {
+                flex: 1;
+                max-width: 50%;
+            }
+
+            #sobremim .text-container {
+                flex: 1;
+                max-width: 50%;
+                margin-top: 120px;
+            }
+
+    </style>
 </head>
 <body>
+    <div id="content-container">
+        <h1>@Model.DsInicio</h1>
+        <div id="button-container" style="opacity:0; width:50vh">
+            <button class="transparent-button" onclick="scrollParaBaixo()">Continuar</button>
+        </div>
+    </div>
 
-        <div id="content-container">
-            <h1>@Model.DsInicio</h1>
-            <div id="button-container" style="opacity:0; width:65vh">
-                <a asp-controller="SobreMim" asp-action="Index" class="transparent-button">Vamos Lá</a>
+    <div class="text-center" id="sobremim">
+        <div class="image-container">
+            <img src="~/img/tecnolo.png" alt="Descrição da imagem" style="width:100%;">
+        </div>
+
+        <div class="text-container">
+            <h2 class="text-center">Sobre Mim</h2>
+            <p>@Model.DsSobreMim</p>
+            <div id="button-container">
+                <a asp-controller="Experiencia" asp-action="Index" class="transparent-button">Vamos Continuar</a>
             </div>
         </div>
+    </div>
+
 
     <script>
         setTimeout(function () {
             document.getElementById("button-container").style.opacity = "1";
         }, 13000);
+
+        function scrollParaBaixo() {
+            var secao = document.getElementById("sobremim");
+            secao.scrollIntoView({ behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
