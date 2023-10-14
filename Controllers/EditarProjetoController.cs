@@ -15,7 +15,7 @@ namespace LucasVaz.Controllers
         }
 
         [Authorize]
-        public IActionResult Index(int pageNumber = 1, int pageSize = 25)
+        public IActionResult Index(int pageNumber = 1, int pageSize = 6)
         {
             var projetos = _projetoDal.GetAllProjetos(pageNumber, pageSize);
             return View(projetos);
@@ -73,10 +73,10 @@ namespace LucasVaz.Controllers
         {
             try
             {
-                // Verifica se o modelo é válido
+               
                 if (ModelState.IsValid)
                 {
-                    // Tentativa de edição do projeto
+                    
                     _projetoDal.EditarProjeto(projeto);
 
                     TempData["SuccessMessage"] = "Projeto atualizado com sucesso!";
@@ -84,18 +84,18 @@ namespace LucasVaz.Controllers
                 }
                 else
                 {
-                    // Mensagens de erros de validação de modelo
+                    
                     var errorList = ModelState.Values.SelectMany(m => m.Errors).Select(e => e.ErrorMessage).ToList();
                     TempData["ErrorMessage"] = string.Join(" | ", errorList);
                 }
             }
             catch (Exception ex)
             {
-                // Define a mensagem de erro para exibição
+                
                 TempData["ErrorMessage"] = $"Erro ao atualizar projeto: {ex.Message}";
             }
 
-            // Se chegou até aqui, há um problema. Retorne à view de edição com os detalhes atuais.
+            
             return View(projeto);
         }
 

@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-    <div id="estrelas">
+    <div>
         <h1 class="display-4 text-center mb-5">Contato</h1>
         <div class="text-center mb-5">
             @foreach (var contato in Model)
@@ -48,8 +48,9 @@
                 }
             }
         </div>
-        <div class="container mt-3 text-center">
-            <form target="_blank" action="https://formsubmit.co/contato@lucasvaz.dev.br" method="POST">
+        <div class="container mt-3 text-center" style="width:70vh;">
+            <div class="cardgeral">
+            <form style="margin:20px; margin-top:20px; margin-bottom:20px;" target="_blank" action="https://formsubmit.co/contato@lucasvaz.dev.br" method="POST">
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col">
@@ -69,6 +70,7 @@
                 </div>
                 <button type="submit" class="transparent-button text-center">Enviar</button>
             </form>
+            </div>
         </div>
 
     </div>

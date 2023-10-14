@@ -6,42 +6,46 @@
 
     <style>
 
-        .sidebar ul.menu {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-            .sidebar ul.menu li {
-                margin: 10px 0;
-                transition: all 0.3s;
-            }
-
-                .sidebar ul.menu li:hover {
-                    transform: scale(1.1);
-                }
-
-                .sidebar ul.menu li a {
-                    display: block;
-                    padding: 10px 20px;
-                    background-color: #007BFF;
-                    color: #FFF;
-                    text-decoration: none;
-                    border-radius: 5px;
-                    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-                }
-
-        .container{
-            width:40vh;
-            height:50px;
-            padding:50px;
-
-        }
     </style>
 </head>
 <body>
-    <h1>Painel de Ajustes</h1>
+    <div class="container mt-5">
+
+        <h1 class="text-center mb-4">Painel de Controle</h1>
+
+        <div class="row">
+            <!-- Card de Acessos -->
+            <div class="col-md-4">
+                <div class="cardgeral text-center">
+                    <div class="card-body">
+                        <h2 class="card-title">10.345</h2>
+                        <p class="card-text">Acessos Totais</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card de Usuários Online -->
+            <div class="col-md-4">
+                <div class="cardgeral text-center">
+                    <div class="card-body">
+                        <h2 class="card-title">57</h2>
+                        <p class="card-text">Usuários Online</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card de Páginas Mais Visitadas -->
+            <div class="col-md-4">
+                <div class="cardgeral text-center">
+                    <div class="card-body">
+                        <h2 class="card-title">3.210</h2>
+                        <p class="card-text">Página "Sobre" Acessada</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
+
 </body>
 </html>

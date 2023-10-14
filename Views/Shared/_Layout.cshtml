@@ -11,8 +11,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Sanchez&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Sono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Muli&display=swap" rel="stylesheet">
 </head>
 <body>
     <div>
@@ -34,15 +34,21 @@
                                 <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Contato" asp-action="Index"><i class="fa fa-envelope"></i> Contato</a></li>
                                 <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Privacidade" asp-action="Index"><i class="fa fa-shield-alt"></i> Privacidade</a></li>
 
-                                <!-- Links de Edição -->
-                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="EditarPessoa" asp-action="Index"><i class="fa fa-user-edit"></i> Editar Sobre Mim</a></li>
-                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="EditarExperiencia" asp-action="Index"><i class="fa fa-briefcase"></i> Editar Experiência</a></li>
-                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="EditarProjeto" asp-action="Index"><i class="fa fa-project-diagram"></i> Editar Projetos</a></li>
-                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="EditarTecnologia" asp-action="Index"><i class="fa fa-cogs"></i> Editar Skills</a></li>
-                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="EditarEstudo" asp-action="Index"><i class="fa fa-book"></i> Editar Estudos</a></li>
-                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="EditarContato" asp-action="Index"><i class="fa fa-envelope"></i> Editar Contato</a></li>
-                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="EditarPrivacidade" asp-action="Index"><i class="fa fa-shield-alt"></i> Editar Privacidade</a></li>
-
+                                <!-- Dropdown de Edição -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="editDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-edit"></i> Editar
+                                    </a>
+                                    <div class="dropdown-menu  transparent-button" style="background-color:transparent" aria-labelledby="editDropdown">
+                                        <a class="dropdown-item  transparent-button" asp-area="" asp-controller="EditarPessoa" asp-action="Index"><i class="fa fa-user-edit"></i> Sobre Mim</a>
+                                        <a class="dropdown-item  transparent-button" asp-area="" asp-controller="EditarExperiencia" asp-action="Index"><i class="fa fa-briefcase"></i> Experiência</a>
+                                        <a class="dropdown-item  transparent-button" asp-area="" asp-controller="EditarProjeto" asp-action="Index"><i class="fa fa-project-diagram"></i> Projetos</a>
+                                        <a class="dropdown-item  transparent-button" asp-area="" asp-controller="EditarTecnologia" asp-action="Index"><i class="fa fa-cogs"></i> Skills</a>
+                                        <a class="dropdown-item  transparent-button" asp-area="" asp-controller="EditarEstudo" asp-action="Index"><i class="fa fa-book"></i> Estudos</a>
+                                        <a class="dropdown-item  transparent-button" asp-area="" asp-controller="EditarContato" asp-action="Index"><i class="fa fa-envelope"></i> Contato</a>
+                                        <a class="dropdown-item  transparent-button" asp-area="" asp-controller="EditarPrivacidade" asp-action="Index"><i class="fa fa-shield-alt"></i> Privacidade</a>
+                                    </div>
+                                </li>
                                 <!-- Logout -->
                                 <li class="nav-item"><a class="nav-link" href="#" onclick="document.getElementById('logoutForm').submit();"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
                             </ul>

@@ -6,21 +6,17 @@
 <!DOCTYPE html>
 <html>
 <body>
-    <div class="container my-4">
+    <div class="container mt-4">
         <h1 class="mb-4">Editar Projetos</h1>
         <div>
-            <a asp-controller="EditarProjeto" asp-action="InserirProjeto" class="btn btn-primary mb-3">Novo Projeto</a>
-            <div class="table-responsive">
-                <table class="table table-bordered" style="color:white">
-                    <thead class="thead-dark">
+            <a asp-controller="EditarProjeto" asp-action="InserirProjeto" class="transparent-button mb-3">Novo Projeto</a>
+            <div class="table-responsive mt-4" style=" height: 100vh;">
+                <table class="table align-middle" style="color:black; border-color:black;">
+                    <thead>
                         <tr>
                             <th>Descrição</th>
                             <th>Comentário</th>
-                            <th>Link Github</th>
-                            <th>Link do Site</th>
-                            <th>Tipo de Projeto</th>
-                            <th>Pessoa Associada</th>
-                            <th>Ordem Exibição</th>
+                            <th>Tipo</th>
                             <th>Tecnologias:</th>
                             <th>Ações</th>
                         </tr>
@@ -31,18 +27,14 @@
                             <tr>
                                 <td>@projeto.DsProjeto</td>
                                 <td>@projeto.CmProjeto</td>
-                                <td><a href="@projeto.LkGithub" target="_blank">@projeto.LkGithub</a></td>
-                                <td><a href="@projeto.LkWeb" target="_blank">@projeto.LkWeb</a></td>
                                 <td>@projeto.TipoProjeto.DsTipoProjeto</td>
-                                <td>@projeto.Pessoa.DsPessoa</td>
-                                <td>@projeto.NrOrdem</td>
                                 <td>
                                     @if (projeto.TecnologiasProjetos != null && projeto.TecnologiasProjetos.Any())
                                     {
-                                        <ul>
+                                        <ul class="list-inline">
                                             @foreach (var tecnologiaProjeto in projeto.TecnologiasProjetos)
                                             {
-                                                <li><img src="~/img/@(tecnologiaProjeto.Tecnologia.DsTecnologia).svg" alt="@tecnologiaProjeto.Tecnologia.DsTecnologia" width="16" height="16" /></li>
+                                                <li class="list-inline-item"><img src="~/img/@(tecnologiaProjeto.Tecnologia.DsTecnologia).svg" alt="@tecnologiaProjeto.Tecnologia.DsTecnologia" width="25" height="25" /></li>
                                             }
                                         </ul>
                                     }
@@ -58,9 +50,16 @@
                         }
                     </tbody>
                 </table>
-                <div class="pagination-container">
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                <div class="container mt-4 text-center">
+                    <nav aria-label="Page navigation" class="custom-pagination text-center">
+                        <ul class="pagination">
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+                        </ul>
+                    </nav>
                 </div>
+                <a asp-controller="Login" asp-action="Home" class="transparent-button"><i class="fas fa-arrow-left"></i> Voltar</a>
             </div>
+        </div>
+    </div>
 </body>
 </html>
