@@ -3,36 +3,45 @@
 @{
     ViewData["Title"] = "Editar Tecnologia";
 }
+<html>
+<body>
+    <h1 class="display-4">Editar Experiência</h1>
+    <div style="display: flex; height: 100vh; align-items: center; justify-content: center;">
+        <div class="cardgeral" style="width: 80%; max-width: 1000px;">
+            <div class="card-body">
+                <form asp-action="Edit" method="post">
+                    <input type="hidden" asp-for="IdTecnologia" />
 
-<h2>@ViewData["Title"]</h2>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="DsTecnologia"><i class="fas fa-microchip"></i> Descrição da Tecnologia:</label>
+                            <input asp-for="DsTecnologia" class="form-control" />
+                            <span asp-validation-for="DsTecnologia" class="text-danger"></span>
+                        </div>
 
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="IdTecnologia" />
+                        <div class="form-group col-md-6">
+                            <label asp-for="TipoTecnologia.IdTipoTecnologia"><i class="fas fa-id-badge"></i> ID do Tipo de Tecnologia:</label>
+                            <input asp-for="TipoTecnologia.IdTipoTecnologia" type="number" class="form-control" />
+                            <span asp-validation-for="TipoTecnologia.IdTipoTecnologia" class="text-danger"></span>
+                        </div>
+                    </div>
 
-    <div class="form-group">
-        <label asp-for="DsTecnologia">Descrição da Tecnologia:</label>
-        <input asp-for="DsTecnologia" class="form-control" />
-        <span asp-validation-for="DsTecnologia" class="text-danger"></span>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label asp-for="QtHabilidade"><i class="fas fa-chart-line"></i> Quantidade de Habilidade:</label>
+                            <input asp-for="QtHabilidade" type="number" class="form-control" />
+                            <span asp-validation-for="QtHabilidade" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pb-4 text-center">
+                        <button type="submit" class="transparent-button"><i class="fas fa-save"></i> Salvar Alterações</button>
+                        <a asp-action="Index" class="transparent-button"><i class="fas fa-arrow-left"></i> Cancelar</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label asp-for="TipoTecnologia.IdTipoTecnologia">ID do Tipo de Tecnologia:</label>
-        <input asp-for="TipoTecnologia.IdTipoTecnologia" type="number" class="form-control" />
-        <span asp-validation-for="TipoTecnologia.IdTipoTecnologia" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="QtHabilidade">Quantidade de Habilidade:</label>
-        <input asp-for="QtHabilidade" type="number" class="form-control" />
-        <span asp-validation-for="QtHabilidade" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
-</form>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
+</body>
+</html>

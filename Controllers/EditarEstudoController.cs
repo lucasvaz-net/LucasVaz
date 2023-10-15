@@ -11,7 +11,7 @@ namespace LucasVaz.Controllers
     public class EditarEstudoController : Controller
     {
         private readonly EstudoDal _estudoDal;
-        private const int PageSize = 25;
+        private const int PageSize = 6;
 
         public EditarEstudoController(EstudoDal estudoDal)
         {

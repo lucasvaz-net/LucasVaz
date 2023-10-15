@@ -11,7 +11,7 @@
 <body>
 <div id="estrelas">
 
-    <h1>Experiencias</h1>
+        <h1>Experiências</h1>
     <div class="row">
         @foreach (var experiencia in Model)
         {
@@ -44,7 +44,9 @@
 
 
         <div id="button-container" style="display: flex; margin-top:50px;  margin-bottom:50px; justify-content: center; align-items: center;">
-            <a asp-controller="Projeto" asp-action="Index" class="transparent-button">Veja meus Projetos</a>
+            <a asp-controller="Projeto" asp-action="Index" class="transparent-button"> 
+                <i class="fa fa-project-diagram"></i> Veja meus Projetos
+            </a>
         </div>
 </div>
 </body>

@@ -1,20 +1,16 @@
 ﻿@using PagedList.Mvc;
 @using X.PagedList;
 @using X.PagedList.Mvc.Core;
-
 @model IPagedList<LucasVaz.Models.Experiencia>
 
-
-@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
-{
-    <div class="alert alert-danger">
-        @ViewBag.ErrorMessage
-    </div>
-}
-<div class="container my-4">
+<html>
+<body>
+<div class="container mt-4">
     <h1>Experiências</h1>
     <div>
-        <a asp-controller="EditarExperiencia" asp-action="Create" class="transparent-button mb-3 mt-4">Nova Experiencia</a>
+        <a asp-controller="EditarExperiencia" asp-action="Create" class="transparent-button mb-3 mt-4">
+                <i class="fas fa-plus"></i>Nova Experiencia
+            </a>
         <div class="table-responsive mt-4">
             <table class="table" style="color:black;  border-color:black;">
                 <thead>
@@ -50,7 +46,9 @@
                             </td>
 
                             <td>
-                                <a href="@Url.Action("Edit", "EditarExperiencia", new { id = experiencia.IdExperiencia })" class="transparent-button" style="text-align: center; vertical-align: middle;">Editar</a>
+                                    <a asp-action="Edit" asp-route-id="@experiencia.IdExperiencia" class="transparent-button">
+                                        <i class="fas fa-pencil-alt"></i> Editar
+                                    </a>
                             </td>
                         </tr>
                     }
@@ -64,6 +62,13 @@
                 </ul>
             </nav>
         </div>
-        <a asp-controller="Login" asp-action="Home" class="transparent-button"><i class="fas fa-arrow-left"></i> Voltar</a>
+        <div class="mt-4 pb-4" id="button-container" style="width:65vh">
+                <a asp-controller="Login" asp-action="Home" class="transparent-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </a>
+
+        </div>
     </div>
 </div>
+</body>
+</html>

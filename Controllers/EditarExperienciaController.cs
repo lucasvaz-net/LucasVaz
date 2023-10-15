@@ -10,7 +10,7 @@ namespace LucasVaz.Controllers
     public class EditarExperienciaController : Controller
     {
         private readonly ExperienciaDal _experienciaDal;
-        private const int DefaultPageSize = 10;
+        private const int DefaultPageSize = 6;
 
         public EditarExperienciaController(ExperienciaDal experienciaDal)
         {

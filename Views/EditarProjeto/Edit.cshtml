@@ -1,71 +1,73 @@
 ﻿@model LucasVaz.Models.Projeto
 
-@{
-    var successMessage = TempData["SuccessMessage"] as string;
-    var errorMessage = TempData["ErrorMessage"] as string;
-}
 
-@if (!string.IsNullOrEmpty(successMessage))
-{
-    <div class="alert alert-success">
-        @successMessage
+
+<html>
+<body>
+    <h1 class="display-4">Editar Projeto</h1>
+    <div style="display: flex; height: 100vh; align-items: center; justify-content: center;">
+        <div class="cardgeral" style="width: 80%; max-width: 1000px;">
+            <a asp-controller="EditarProjeto" asp-action="GerenciarTecnologias" asp-route-idProjeto="@Model.IdProjeto" class="transparent-button">Ajustar Tecnologias</a>
+            <div class="card-body">
+                <form asp-action="Edit" method="post" class="custom-form">
+                    <input type="hidden" asp-for="IdProjeto" />
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="DsProjeto"><i class="fas fa-clipboard"></i> Descrição do Projeto:</label>
+                            <input asp-for="DsProjeto" class="form-control" />
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="CmProjeto"><i class="fas fa-comments"></i> Comentário:</label>
+                            <textarea asp-for="CmProjeto" class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="LkGithub"><i class="fab fa-github"></i> Link Github:</label>
+                            <input asp-for="LkGithub" class="form-control" />
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="LkWeb"><i class="fas fa-globe"></i> Link do Site:</label>
+                            <input asp-for="LkWeb" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="DsLoginTeste"><i class="fas fa-user"></i> Login de Teste:</label>
+                            <input asp-for="DsLoginTeste" class="form-control" />
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="DsSenhaTeste"><i class="fas fa-lock"></i> Senha de Teste:</label>
+                            <input asp-for="DsSenhaTeste" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="TipoProjeto.IdTipoProjeto"><i class="fas fa-id-badge"></i> ID do Tipo do Projeto:</label>
+                            <input asp-for="TipoProjeto.IdTipoProjeto" class="form-control" />
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="NrOrdem"><i class="fas fa-sort-numeric-up"></i> Ordem Exibição:</label>
+                            <input asp-for="NrOrdem" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pb-4 text-center">
+                        <button type="submit" class="transparent-button"><i class="fas fa-save"></i> Salvar Alterações</button>
+                        <a asp-action="Index" class="transparent-button"><i class="fas fa-arrow-left"></i> Cancelar</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
     </div>
-}
-
-@if (!string.IsNullOrEmpty(errorMessage))
-{
-    <div class="alert alert-danger">
-        @errorMessage
-    </div>
-}
-
-
-<h1>Editar Projeto</h1>
-
-<a asp-controller="EditarProjeto" asp-action="GerenciarTecnologias" asp-route-idProjeto="@Model.IdProjeto" class="transparent-button">Ajustar Tecnologias</a>
-<form asp-action="Edit" method="post" class="custom-form">
-    <input type="hidden" asp-for="IdProjeto" />
-
-    <div class="form-group">
-        <label asp-for="DsProjeto">Descrição do Projeto:</label>
-        <input asp-for="DsProjeto" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="CmProjeto">Comentário:</label>
-        <textarea asp-for="CmProjeto" class="form-control"></textarea>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="LkGithub">Link Github:</label>
-        <input asp-for="LkGithub" class="form-control" />
-    </div>
-
-
-    <div class="form-group">
-        <label asp-for="LkWeb">Link do Site:</label>
-        <input asp-for="LkWeb" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="DsLoginTeste">Login de Teste:</label>
-        <input asp-for="DsLoginTeste" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="DsSenhaTeste">Senha de Teste:</label>
-        <input asp-for="DsSenhaTeste" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="TipoProjeto.IdTipoProjeto">ID do Tipo do Projeto:</label>
-        <input asp-for="TipoProjeto.IdTipoProjeto" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="NrOrdem">Ordem Exibição:</label>
-        <input asp-for="NrOrdem" class="form-control" />
-    </div>
-
-    <button type="submit" class="transparent-button">Salvar Alterações</button>
-    <a asp-action="Index" class="transparent-button">Cancelar</a>
-</form>
+</body>
+</html>

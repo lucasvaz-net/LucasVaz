@@ -14,7 +14,7 @@
             font-family: 'Nunito', sans-serif;
         }
 
-        #content-container {
+        #content-container, #sobremim {
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -26,58 +26,34 @@
             height: 30vh;
         }
 
-        p {
-            margin-top: 50px;
-            text-align: center;
-            max-width: 100%;
-            font-size: 20px;
-        }
-
-        #sobremim {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-            #sobremim .image-container {
-                flex: 1;
-                max-width: 50%;
-            }
-
-            #sobremim .text-container {
-                flex: 1;
-                max-width: 50%;
-                margin-top: 120px;
-            }
-
     </style>
 </head>
 <body>
     <div id="content-container">
-        <h1>@Model.DsInicio</h1>
-        <div id="button-container" style="opacity:0; width:50vh">
-            <button class="transparent-button" onclick="scrollParaBaixo()">Continuar</button>
+        <h1 id="type">@Model.DsInicio</h1>
+        <div id="button-container" style="opacity:0;">
+            <button class="transparent-button" onclick="startTyping('#sobremim h1#type'); scrollParaBaixo();">
+                Vamos Continuar <i class="fas fa-arrow-down"></i>
+            </button>
         </div>
     </div>
+    <div id="sobremim">
+        <h1 id="type" style="width:90%; visibility: hidden;">@Model.DsSobreMim</h1>
+        <div id="button-containersobre" style="margin-top:50px; opacity:0;">
+            <a asp-controller="Experiencia" asp-action="Index" class="transparent-button">
+                Ver Experiências  <i class="fas fa-arrow-right"></i>
+            </a>
 
-    <div class="text-center" id="sobremim">
-        <div class="image-container">
-            <img src="~/img/tecnolo.png" alt="Descrição da imagem" style="width:100%;">
-        </div>
-
-        <div class="text-container">
-            <h2 class="text-center">Sobre Mim</h2>
-            <p>@Model.DsSobreMim</p>
-            <div id="button-container">
-                <a asp-controller="Experiencia" asp-action="Index" class="transparent-button">Vamos Continuar</a>
-            </div>
         </div>
     </div>
-
-
+    <button id="backToTop" onclick="goToTop()" style="display: none; position: fixed; bottom: 10px; right: 10px; z-index: 1000;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
     <script>
         setTimeout(function () {
             document.getElementById("button-container").style.opacity = "1";
-        }, 13000);
+        }, 9000);
+
 
         function scrollParaBaixo() {
             var secao = document.getElementById("sobremim");

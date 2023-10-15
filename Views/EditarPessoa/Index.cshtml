@@ -9,21 +9,6 @@
     <h1 class="display-4">Editar Dados</h1>
     <div style="display: flex; height: 100vh; align-items: center; justify-content: center; margin-top:70px;">
         <div class="cardgeral" style="width: 80%; max-width: 1000px;">
-
-
-            @if (TempData["SuccessMessage"] != null)
-            {
-                <div class="alert alert-success">
-                    <i class="fas fa-check-circle"></i> @TempData["SuccessMessage"]
-                </div>
-            }
-            @if (TempData["ErrorMessage"] != null)
-            {
-                <div class="alert alert-danger">
-                    <i class="fas fa-times-circle"></i> @TempData["ErrorMessage"]
-                </div>
-            }
-
             <div class="card-body">
                 <form asp-action="Index" asp-controller="EditarPessoa" method="post">
                     <div class="row">

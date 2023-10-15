@@ -9,14 +9,15 @@
     <div class="container mt-4">
         <h1 class="mb-4">Editar Projetos</h1>
         <div>
-            <a asp-controller="EditarProjeto" asp-action="InserirProjeto" class="transparent-button mb-3">Novo Projeto</a>
+            <a asp-controller="EditarProjeto" asp-action="InserirProjeto" class="transparent-button mb-3">
+                <i class="fas fa-plus"></i>Novo Projeto
+            </a>
             <div class="table-responsive mt-4" style=" height: 100vh;">
                 <table class="table align-middle" style="color:black; border-color:black;">
                     <thead>
                         <tr>
                             <th>Descrição</th>
                             <th>Comentário</th>
-                            <th>Tipo</th>
                             <th>Tecnologias:</th>
                             <th>Ações</th>
                         </tr>
@@ -27,7 +28,6 @@
                             <tr>
                                 <td>@projeto.DsProjeto</td>
                                 <td>@projeto.CmProjeto</td>
-                                <td>@projeto.TipoProjeto.DsTipoProjeto</td>
                                 <td>
                                     @if (projeto.TecnologiasProjetos != null && projeto.TecnologiasProjetos.Any())
                                     {
@@ -44,7 +44,10 @@
                                     }
                                 </td>
                                 <td>
-                                    <a href="@Url.Action("Edit", "EditarProjeto", new { id = projeto.IdProjeto })" class="transparent-button" style="text-align: center; vertical-align: middle;">Editar</a>
+                                    <a asp-action="Edit" asp-route-id="@projeto.IdProjeto" class="transparent-button" style="display:block; width:110px;">
+                                        <i class="fas fa-pencil-alt"></i> Editar
+                                    </a>
+
                                 </td>
                             </tr>
                         }
@@ -57,7 +60,10 @@
                         </ul>
                     </nav>
                 </div>
-                <a asp-controller="Login" asp-action="Home" class="transparent-button"><i class="fas fa-arrow-left"></i> Voltar</a>
+                <a asp-controller="Login" asp-action="Home" class="transparent-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </a>
+
             </div>
         </div>
     </div>

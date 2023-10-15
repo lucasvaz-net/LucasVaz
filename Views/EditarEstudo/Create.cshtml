@@ -2,33 +2,47 @@
 @{
     ViewData["Title"] = "Inserir Estudo";
 }
-<h1>@ViewData["Title"]</h1>
+<html>
+<body>
+    <h1 class="display-4">Inserir Estudo</h1>
+    <div style="display: flex; height: 100vh; align-items: center; justify-content: center;">
+        <div class="cardgeral" style="width: 80%; max-width: 1000px;">
+            <div class="card-body">
 
-<form asp-action="Create" method="post" class="custom-form">
+                <form asp-action="Create" method="post" class="custom-form">
 
-    <div class="form-group">
-        <label for="DsEstudo">Descrição do Estudo:</label>
-        <input type="text" class="form-control" id="DsEstudo" name="DsEstudo" required />
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="DsEstudo"><i class="fas fa-book"></i> Descrição do Estudo:</label>
+                            <input type="text" class="form-control" id="DsEstudo" name="DsEstudo" required />
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="DsLocal"><i class="fas fa-map-marker-alt"></i> Local do Estudo:</label>
+                            <input type="text" class="form-control" id="DsLocal" name="DsLocal" required />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="DtEstudo"><i class="fas fa-calendar-alt"></i> Data do Estudo:</label>
+                            <input type="date" class="form-control" id="DtEstudo" name="DtEstudo" required />
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="TipoEstudo.IdTipoEstudo"><i class="fas fa-id-badge"></i> ID do Tipo do Estudo:</label>
+                            <input type="number" class="form-control" id="TipoEstudo.IdTipoEstudo" name="TipoEstudo.IdTipoEstudo" required />
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pb-4 text-center">
+                        <button type="submit" class="transparent-button"><i class="fas fa-plus"></i> Criar</button>
+                        <a asp-action="Index" class="transparent-button"><i class="fas fa-arrow-left"></i> Cancelar</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="DsLocal">Local do Estudo:</label>
-        <input type="text" class="form-control" id="DsLocal" name="DsLocal" required />
-    </div>
-
-    <div class="form-group">
-        <label for="DtEstudo">Data do Estudo:</label>
-        <input type="date" class="form-control" id="DtEstudo" name="DtEstudo" required />
-    </div>
-
-    <div class="form-group">
-        <label for="TipoEstudo.IdTipoEstudo">ID do Tipo do Estudo:</label>
-        <input type="number" class="form-control" id="TipoEstudo.IdTipoEstudo" name="TipoEstudo.IdTipoEstudo" required />
-    </div>
-
-    <div class="d-flex justify-content-between">
-        <input type="submit" value="Inserir Estudo" class="btn transparent-button" />
-        <a asp-action="Index" class="btn transparent-button">Cancelar</a>
-    </div>
-
-</form>
+</body>
+</html>

@@ -4,53 +4,65 @@
     ViewData["Title"] = "Editar Experiência";
 }
 
-<h1>@ViewData["Title"]</h1>
+<html>
+<body>
+    <h1 class="display-4">Editar Experiência</h1>
+    <div style="display: flex; height: 100vh; align-items: center; justify-content: center;">
+        <div class="cardgeral" style="width: 80%; max-width: 1000px;">
+            <div class="card-body">
+                <form asp-action="Edit" method="post">
+                    <input type="hidden" asp-for="IdExperiencia" />
 
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="IdExperiencia" />
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="DsExperiencia"><i class="fas fa-comment"></i> Descrição da Experiência:</label>
+                            <input asp-for="DsExperiencia" class="form-control" />
+                            <span asp-validation-for="DsExperiencia" class="text-danger"></span>
+                        </div>
 
-    <div class="form-group">
-        <label asp-for="DsExperiencia">Descrição da Experiência:</label>
-        <input asp-for="DsExperiencia" class="form-control" />
-        <span asp-validation-for="DsExperiencia" class="text-danger"></span>
+                        <div class="form-group col-md-6">
+                            <label asp-for="DsFuncao"><i class="fas fa-briefcase"></i> Função:</label>
+                            <input asp-for="DsFuncao" class="form-control" />
+                            <span asp-validation-for="DsFuncao" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="DsLocal"><i class="fas fa-map-marker-alt"></i> Local:</label>
+                            <input asp-for="DsLocal" class="form-control" />
+                            <span asp-validation-for="DsLocal" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="DtIni"><i class="fas fa-calendar-check"></i> Data de Início:</label>
+                            <input asp-for="DtIni" type="date" class="form-control" />
+                            <span asp-validation-for="DtIni" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="DtFim"><i class="fas fa-calendar-times"></i> Data de Término:</label>
+                            <input asp-for="DtFim" type="date" class="form-control" />
+                            <span asp-validation-for="DtFim" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="TipoExperiencia.IdTipoExperiencia"><i class="fas fa-id-badge"></i> ID do Tipo de Experiência:</label>
+                            <input asp-for="TipoExperiencia.IdTipoExperiencia" type="number" class="form-control" />
+                            <span asp-validation-for="TipoExperiencia.IdTipoExperiencia" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pb-4 text-center">
+                        <button type="submit" class="transparent-button"><i class="fas fa-save"></i> Salvar Alterações</button>
+                        <a asp-action="Index" class="transparent-button"><i class="fas fa-arrow-left"></i> Cancelar</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label asp-for="DsFuncao">Função:</label>
-        <input asp-for="DsFuncao" class="form-control" />
-        <span asp-validation-for="DsFuncao" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="DsLocal">Local:</label>
-        <input asp-for="DsLocal" class="form-control" />
-        <span asp-validation-for="DsLocal" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="DtIni">Data de Início:</label>
-        <input asp-for="DtIni" type="date" class="form-control" />
-        <span asp-validation-for="DtIni" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="DtFim">Data de Término:</label>
-        <input asp-for="DtFim" type="date" class="form-control" />
-        <span asp-validation-for="DtFim" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="TipoExperiencia.IdTipoExperiencia">ID do Tipo de Experiência:</label>
-        <input asp-for="TipoExperiencia.IdTipoExperiencia" type="number" class="form-control" />
-        <span asp-validation-for="TipoExperiencia.IdTipoExperiencia" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
-</form>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
+</body>
+</html>

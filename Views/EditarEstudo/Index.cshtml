@@ -3,52 +3,64 @@
 @using X.PagedList.Mvc.Core;
 @model IPagedList<LucasVaz.Models.Estudo>
 
-<h1>Estudos</h1>
-
-@if (ViewBag.ErrorMessage != null)
-{
-    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
-}
-
-<a asp-action="Create" asp-controller="EditarEstudo" class="btn transparent-button mt-4">Inserir Novo Estudo</a>
-
-<table class="table mt-4" style="color:white">
-    <thead>
-        <tr>
-            <th>Estudo</th>
-            <th>Local</th>
-            <th>Data</th>
-            <th>Tipo de Estudo</th>
-            <th>Pessoa</th>
-            <th>Tecnologias</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var estudo in Model)
-        {
-            <tr>
-                <td>@estudo.DsEstudo</td>
-                <td>@estudo.DsLocal</td>
-                <td>@estudo.DtEstudo</td>
-                <td>@estudo.TipoEstudo.DsTipoEstudo</td>
-                <td>@estudo.Pessoa.DsPessoa</td>
-                <td>
-                    <ul>
-                        @foreach (var tecnologia in estudo.EstudosTecnologias)
+<html>
+<body>
+    <div class="container mt-4">
+        <h1>Estudos</h1>
+        <div>
+            <a asp-action="Create" asp-controller="EditarEstudo" class="transparent-button mb-3 mt-4">
+                <i class="fas fa-plus"></i>Inserir Novo Estudo
+            </a>
+            <div class="table-responsive mt-4">
+                <table class="table" style="color:black;  border-color:black;">
+                    <thead>
+                        <tr>
+                            <th>Estudo</th>
+                            <th>Local</th>
+                            <th>Tipo de Estudo</th>
+                            <th>Tecnologias</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var estudo in Model)
                         {
-                            <img src="@Url.Content($"~/img/{tecnologia.Tecnologia.DsTecnologia}.svg")" width="16" height="16" />
+                            <tr>
+                                <td>@estudo.DsEstudo</td>
+                                <td>@estudo.DsLocal</td>
+                                <td>@estudo.TipoEstudo.DsTipoEstudo</td>
+                                <td>
+                                    <ul class="list-inline">
+                                        @foreach (var tecnologia in estudo.EstudosTecnologias)
+                                        {
+                                            <img src="@Url.Content($"~/img/{tecnologia.Tecnologia.DsTecnologia}.svg")" width="16" height="16" />
+                                        }
+                                    </ul>
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-controller="EditarEstudo" asp-route-id="@estudo.IdEstudo" class="transparent-button">
+                                        <i class="fas fa-pencil-alt"></i>Editar
+                                    </a>
+                                </td>
+                            </tr>
                         }
+                    </tbody>
+                </table>
+            </div>
+            <div class="container mt-4 text-center">
+                <nav aria-label="Page navigation" class="custom-pagination text-center">
+                    <ul class="pagination">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
                     </ul>
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-controller="EditarEstudo" asp-route-id="@estudo.IdEstudo" class="btn transparent-button">Editar</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                </nav>
+            </div>
+            <div class="mt-4 pb-4" id="button-container" style="width:65vh">
+                <a asp-controller="Login" asp-action="Home" class="transparent-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </a>
 
-<div class="pagination-container">
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

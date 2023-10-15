@@ -1,53 +1,67 @@
 ﻿@model LucasVaz.Models.Projeto
 @TempData["Message"]
+<html>
+<body>
+    <h1 class="display-4">Inserir Projeto</h1>
+    <div style="display: flex; height: 100vh; align-items: center; justify-content: center;">
+        <div class="cardgeral" style="width: 80%; max-width: 1000px;">
+            <div class="card-body">
+                <form asp-action="InserirProjeto" method="post" class="custom-form">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="DsProjeto"><i class="fas fa-project-diagram"></i> Descrição do Projeto:</label>
+                            <input type="text" class="form-control" id="DsProjeto" name="DsProjeto" required />
+                        </div>
 
+                        <div class="form-group col-md-6">
+                            <label for="CmProjeto"><i class="fas fa-comments"></i> Comentário sobre o Projeto:</label>
+                            <textarea class="form-control" id="CmProjeto" name="CmProjeto" required></textarea>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="LkGithub"><i class="fas fa-code-branch"></i> Link do Github:</label>
+                            <input type="url" class="form-control" id="LkGithub" name="LkGithub" />
+                        </div>
 
-<h1>Inserir Projeto</h1>
-<form asp-action="InserirProjeto" method="post" class="custom-form">
+                        <div class="form-group col-md-6">
+                            <label for="LkWeb"><i class="fas fa-globe"></i> Link do Site:</label>
+                            <input type="url" class="form-control" id="LkWeb" name="LkWeb" />
+                        </div>
+                    </div>
 
-    <div class="form-group">
-        <label for="DsProjeto">Descrição do Projeto:</label>
-        <input type="text" class="form-control" id="DsProjeto" name="DsProjeto" required />
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="DsLoginTeste"><i class="fas fa-user"></i> Login de Teste:</label>
+                            <input type="text" class="form-control" id="DsLoginTeste" name="DsLoginTeste" />
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="DsSenhaTeste"><i class="fas fa-key"></i> Senha de Teste:</label>
+                            <input type="password" class="form-control" id="DsSenhaTeste" name="DsSenhaTeste" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="TipoProjeto.IdTipoProjeto"><i class="fas fa-id-badge"></i> ID do Tipo do Projeto:</label>
+                            <input type="number" class="form-control" id="TipoProjeto.IdTipoProjeto" name="TipoProjeto.IdTipoProjeto" required />
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="NrOrdem"><i class="fas fa-sort-numeric-up"></i> Ordem Exibição:</label>
+                            <input type="number" class="form-control" id="NrOrdem" name="NrOrdem" required />
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pb-4 text-center">
+                        <button type="submit" class="transparent-button"><i class="fas fa-plus"></i> Criar</button>
+                        <a asp-action="Index" class="transparent-button"><i class="fas fa-arrow-left"></i> Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="CmProjeto">Comentário sobre o Projeto:</label>
-        <textarea class="form-control" id="CmProjeto" name="CmProjeto" required></textarea>
-    </div>
-
-    <div class="form-group">
-        <label for="LkGithub">Link do Github:</label>
-        <input type="url" class="form-control" id="LkGithub" name="LkGithub" />
-    </div>
-
-    <div class="form-group">
-        <label for="LkWeb">Link do Site:</label>
-        <input type="url" class="form-control" id="LkWeb" name="LkWeb" />
-    </div>
-
-    <div class="form-group">
-        <label for="DsLoginTeste">Login de Teste:</label>
-        <input type="text" class="form-control" id="DsLoginTeste" name="DsLoginTeste" />
-    </div>
-
-    <div class="form-group">
-        <label for="DsSenhaTeste">Senha de Teste:</label>
-        <input type="password" class="form-control" id="DsSenhaTeste" name="DsSenhaTeste" />
-    </div>
-
-    <div class="form-group">
-        <label for="TipoProjeto.IdTipoProjeto">ID do Tipo do Projeto:</label>
-        <input type="number" class="form-control" id="TipoProjeto.IdTipoProjeto" name="TipoProjeto.IdTipoProjeto" required />
-    </div>
-    <div class="form-group">
-        <label for="NrOrdem">Ordem Exibição:</label>
-        <input type="number" class="form-control" id="NrOrdem" name="NrOrdem" required />
-    </div>
-    <div class="d-flex justify-content-between">
-        <input type="submit" value="Inserir Projeto" class="btn transparent-button" />
-        <a asp-action="Index" class="btn transparent-button">Cancelar</a>
-    </div>
-
-</form>
-
+</body>
+</html>

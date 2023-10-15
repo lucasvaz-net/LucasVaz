@@ -140,3 +140,17 @@ h2 {
     border-radius: 3px;
 }
 
+#backToTop {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 10px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    #backToTop:hover {
+        background-color: #555;
+    }

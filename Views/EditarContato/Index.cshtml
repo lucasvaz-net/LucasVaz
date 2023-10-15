@@ -2,36 +2,44 @@
 
 <html>
 <body>
-    <div class="container mt-5">
-        <h2 class="mb-4">Lista de Contatos</h2>
-        <table class="table table-bordered table-hover" style="color:white">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Contato</th>
-                    <th>Tipo</th>
-                    <th>Pessoa</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var contato in Model)
-                {
-                    <tr>
-                        <td>@contato.IdContato</td>
-                        <td>@contato.DsContato</td>
-                        <td>@contato.TipoContato.DsTipoContato</td>
-                        <td>@contato.Pessoa.DsPessoa</td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@contato.IdContato" class="btn btn-sm btn-warning">Editar</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <div class="mt-4 pb-4" id="button-container" style="width:65vh">
-        <a asp-controller="Login" asp-action="Home" class="transparent-button">Voltar</a>
+    <div class="container mt-4">
+        <h1>Contatos</h1>
+        <div>
+            <a asp-action="Create" asp-controller="EditarContato" class="transparent-button mb-3 mt-4">
+                <i class="fas fa-plus"></i>Inserir Novo Contato
+            </a>
+            <div class="table-responsive mt-4">
+                <table class="table" style="color:black;  border-color:black;">
+                    <thead>
+                        <tr>
+                            <th>Contato</th>
+                            <th>Tipo</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var contato in Model)
+                        {
+                            <tr>
+                                <td>@contato.DsContato</td>
+                                <td>@contato.TipoContato.DsTipoContato</td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@contato.IdContato" class="transparent-button">
+                                        <i class="fas fa-pencil-alt"></i>Editar
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-4 pb-4" id="button-container" style="width:65vh">
+                <a asp-controller="Login" asp-action="Home" class="transparent-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </a>
+
+            </div>
+        </div>
     </div>
 </body>
 </html>

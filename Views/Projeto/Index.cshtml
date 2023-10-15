@@ -63,27 +63,27 @@
 
                             @if (!string.IsNullOrEmpty(projeto.LkGithub))
                             {
-                                <a href="@projeto.LkGithub" target="_blank" class="transparent-button mr-2" type="button">
-                                    <img src="~/img/github.png" width="30px" height="30px"> Ver no Github
+                                <a href="@projeto.LkGithub" target="_blank" class="transparent-button" type="button">
+                                    <i class="fab fa-github"></i> Ver no Github
                                 </a>
                             }
                             else
                             {
-                                <button class="transparent-button mr-2" type="button">Indisponível</button>
+                                <button class="transparent-button" type="button">Indisponível</button>
                             }
 
                             @if (!string.IsNullOrEmpty(projeto.LkWeb))
                             {
                                 if (string.IsNullOrEmpty(projeto.DsLoginTeste))
                                 {
-                                    <a href='@projeto.LkWeb' target='_blank' class='transparent-button mr-2' type='button'>
-                                        <img src="~/img/link-conectado.png" width='34px' height='30px'> Ver na Web
+                                    <a href='@projeto.LkWeb' target='_blank' class='transparent-button' type='button'>
+                                        <i class="fas fa-globe"></i>  Ver na Web
                                     </a>
                                 }
                                 else
                                 {
-                                    <a href='@($"{projeto.LkWeb}/conta/login/{projeto.DsLoginTeste}/{projeto.DsSenhaTeste}")' target='_blank' class='transparent-button mr-2' type='button'>
-                                        <img src="~/img/link-conectado.png" width='34px' height='30px'> Ver na Web
+                                    <a href='@($"{projeto.LkWeb}/conta/login/{projeto.DsLoginTeste}/{projeto.DsSenhaTeste}")' target='_blank' class='transparent-button' type='button'>
+                                        <i class="fas fa-globe"></i>  Ver na Web
                                     </a>
                                 }
                             }
@@ -107,7 +107,7 @@
     </div>
     <div class="container mt-4">
         <div id="button-containersobremim" class="text-center">
-            <a asp-controller="Habilidade" asp-action="Index" class="transparent-button">Veja minhas Skill's</a>
+            <a asp-controller="Habilidade" asp-action="Index" class="transparent-button"> <i class="fa fa-cogs"></i> Veja minhas Skill's</a>
         </div>
 
     </div>

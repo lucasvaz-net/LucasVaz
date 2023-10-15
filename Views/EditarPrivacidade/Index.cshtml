@@ -2,37 +2,45 @@
 
 <html>
 <body>
-    <h1 class="mb-4">Políticas de Privacidade</h1>
-    <a asp-controller="EditarPrivacidade" asp-action="Create" class="btn btn-primary mb-3 mt-4">Nova Privacidade</a>
-    <div class="container mt-5">
-        
-        <table class="table table-bordered table-hover" style="color:white">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Descrição</th>
-                    <th>Atualizada em</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var privacidade in Model)
-                {
-                    <tr>
-                        <td>@privacidade.IdPrivacidade</td>
-                        <td>@privacidade.DsTitulo</td>
-                        <td>@privacidade.DsTexto</td>
-                        <td>@privacidade.DtPrivacidade.ToString("dd/MM/yyyy")</td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@privacidade.IdPrivacidade" class="btn btn-sm btn-warning">Editar</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <div class="mt-4 pb-4" id="button-container" style="width:65vh">
-        <a asp-controller="Login" asp-action="Home" class="transparent-button">Voltar</a>
+    <div class="container mt-4">
+        <h1>Politica de Privacidade</h1>
+        <div>
+            <a asp-action="Create" asp-controller="EditarPrivacidade" class="transparent-button mb-3 mt-4">
+                <i class="fas fa-plus"></i>Inserir Nova Privacidade
+            </a>
+            <div class="table-responsive mt-4">
+                <table class="table" style="color:black;  border-color:black;">
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Atualizada em</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var privacidade in Model)
+                        {
+                            <tr>
+                                <td>@privacidade.DsTitulo</td>
+                                <td>@privacidade.DsTexto</td>
+                                <td>@privacidade.DtPrivacidade.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@privacidade.IdPrivacidade" class="transparent-button">
+                                        <i class="fas fa-pencil-alt"></i> Editar
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-4 pb-4" id="button-container" style="width:65vh">
+                <a asp-controller="Login" asp-action="Home" class="transparent-button">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </a>
+
+            </div>
+        </div>
     </div>
 </body>
 </html>
